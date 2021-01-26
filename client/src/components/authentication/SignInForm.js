@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import config from "../../config";
 import FormError from "../layout/FormError";
+import translateServerErrors from '../../services/translateServerErrors.js'
 
 const SignInForm = () => {
   const [userPayload, setUserPayload] = useState({ email: "", password: "" });
@@ -44,6 +45,11 @@ const SignInForm = () => {
           resp.json().then(() => {
             setShouldRedirect(true);
           });
+        }
+        else if (response.status === 422) {
+          const body = response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
         } else {
           const errorMessage = `${resp.status} (${resp.statusText})`;
           const error = new Error(errorMessage);
