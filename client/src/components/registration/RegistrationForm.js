@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormError from "../layout/FormError";
 import config from "../../config";
+import translateServerErrors from "../../services/translateServerErrors";
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
@@ -61,18 +62,23 @@ const RegistrationForm = () => {
         }),
       }).then((resp) => {
         if (resp.ok) {
-          resp.json().then((user) => {
+          return resp.json().then(() => {
             setShouldRedirect(true);
           });
+        } else if (resp.status === 422) {
+          const body = resp.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
         } else {
           const errorMessage = `${resp.status} (${resp.statusText})`;
           const error = new Error(errorMessage);
+          console.log(error)
           throw error;
-        }
-      });
+        }    
+      })
+      .catch((error) => `Error in fetch: ${errors.message}`)
     }
   };
-
   const onInputChange = (event) => {
     setUserPayload({
       ...userPayload,

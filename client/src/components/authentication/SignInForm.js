@@ -45,8 +45,7 @@ const SignInForm = () => {
           resp.json().then(() => {
             setShouldRedirect(true);
           });
-        }
-        else if (response.status === 422) {
+        } else if (response.status === 422) {
           const body = response.json()
           const newErrors = translateServerErrors(body.errors)
           return setErrors(newErrors)
@@ -54,8 +53,9 @@ const SignInForm = () => {
           const errorMessage = `${resp.status} (${resp.statusText})`;
           const error = new Error(errorMessage);
           throw error;
-        }
-      });
+        }    
+      })
+      .catch((err) => `Error in fetch: ${err.message}`)
     }
   };
   const onInputChange = (event) => {
