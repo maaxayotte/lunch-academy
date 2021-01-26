@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FormError from "../layout/FormError";
 import config from "../../config";
 import translateServerErrors from "../../services/translateServerErrors";
+import ErrorList from './../ErrorList.js'
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
@@ -11,7 +12,6 @@ const RegistrationForm = () => {
   });
 
   const [errors, setErrors] = useState({});
-
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const validateInput = (payload) => {
@@ -61,24 +61,29 @@ const RegistrationForm = () => {
           "Content-Type": "application/json",
         }),
       }).then((resp) => {
-        if (resp.ok) {
-          return resp.json().then(() => {
-            setShouldRedirect(true);
-          });
-        } else if (resp.status === 422) {
-          const body = resp.json()
-          const newErrors = translateServerErrors(body.errors)
-          return setErrors(newErrors)
+        if ((resp.status === 422) || (resp.ok)) {
+          return resp
         } else {
           const errorMessage = `${resp.status} (${resp.statusText})`;
           const error = new Error(errorMessage);
           console.log(error)
           throw error;
-        }    
+        }
+      }).then((response) => {
+        return response.json()
+      }).then((parsedResponse) => {
+        if (parsedResponse.errors !== null && parsedResponse !== undefined ) {
+          console.log("handling errors")
+          const newErrors = translateServerErrors(parsedResponse.errors)
+          return setErrors(newErrors)
+        } else {
+          setShouldRedirect(true);
+        }
       })
       .catch((error) => `Error in fetch: ${errors.message}`)
     }
   };
+
   const onInputChange = (event) => {
     setUserPayload({
       ...userPayload,
@@ -92,6 +97,7 @@ const RegistrationForm = () => {
 
   return (
     <div className="grid-container" onSubmit={onSubmit}>
+      <ErrorList errors={errors}/>
       <h1>Register</h1>
       <form>
         <div>
