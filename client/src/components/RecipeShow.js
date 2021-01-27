@@ -46,11 +46,15 @@ const RecipeShow = (props) => {
 
         <div className="ingredient-instructions">
           <div>
-            <div className="recipe-column-names">Ingredients:</div>
+            <div className="recipe-column-names ingrdt-instrcs-title">
+              Ingredients:
+            </div>
             {recipe.ingredients}
           </div>
           <div className="instructions-div">
-            <div className="recipe-column-names">Cooking Instructions:</div>
+            <div className="recipe-column-names ingrdt-instrcs-title">
+            Cooking Instructions:
+          </div>
             {recipe.instructions}
           </div>
         </div>
