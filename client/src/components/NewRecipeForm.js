@@ -55,11 +55,9 @@ return(
       <label>
         Difficulty:
         <select value={newRecipe.difficulty} onChange={handleInputChange}>
-          <option value='1'>1</option>
-          <option value='2'>2</option>
-          <option value='3'>3</option>
-          <option value='4'>4</option>
-          <option value='5'>5</option>
+          <option value='easy'>Easy</option>
+          <option value='intermediate'>Intermediate</option>
+          <option value='advanced'>Advanced</option>
         </select>
       </label>
 
