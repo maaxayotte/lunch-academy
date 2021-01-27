@@ -1,8 +1,6 @@
 import { connection } from "../boot.js";
 import RecipeSeeder from "./seeders/RecipeSeeder.js";
 
-
-
 class Seeder {
   static async seed() {
     console.log("seeding...");
