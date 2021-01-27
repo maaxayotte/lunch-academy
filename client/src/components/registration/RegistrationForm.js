@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import FormError from "../layout/FormError";
 import config from "../../config";
+import translateServerErrors from "../../services/translateServerErrors";
+import ErrorList from './../ErrorList.js'
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
@@ -10,7 +12,6 @@ const RegistrationForm = () => {
   });
 
   const [errors, setErrors] = useState({});
-
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const validateInput = (payload) => {
@@ -60,16 +61,24 @@ const RegistrationForm = () => {
           "Content-Type": "application/json",
         }),
       }).then((resp) => {
-        if (resp.ok) {
-          resp.json().then((user) => {
-            setShouldRedirect(true);
-          });
+        if ((resp.status === 422) || (resp.ok)) {
+          return resp
         } else {
           const errorMessage = `${resp.status} (${resp.statusText})`;
           const error = new Error(errorMessage);
           throw error;
         }
-      });
+      }).then((response) => {
+        return response.json()
+      }).then((parsedResponse) => {
+        if (parsedResponse.errors !== null && parsedResponse !== undefined ) {
+          const newErrors = translateServerErrors(parsedResponse.errors)
+          return setErrors(newErrors)
+        } else {
+          setShouldRedirect(true);
+        }
+      })
+      .catch((error) => `Error in fetch: ${errors.message}`)
     }
   };
 
@@ -86,6 +95,7 @@ const RegistrationForm = () => {
 
   return (
     <div className="grid-container" onSubmit={onSubmit}>
+      <ErrorList errors={errors}/>
       <h1>Register</h1>
       <form>
         <div>
