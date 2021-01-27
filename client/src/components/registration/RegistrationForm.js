@@ -66,14 +66,12 @@ const RegistrationForm = () => {
         } else {
           const errorMessage = `${resp.status} (${resp.statusText})`;
           const error = new Error(errorMessage);
-          console.log(error)
           throw error;
         }
       }).then((response) => {
         return response.json()
       }).then((parsedResponse) => {
         if (parsedResponse.errors !== null && parsedResponse !== undefined ) {
-          console.log("handling errors")
           const newErrors = translateServerErrors(parsedResponse.errors)
           return setErrors(newErrors)
         } else {

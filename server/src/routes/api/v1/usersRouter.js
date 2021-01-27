@@ -1,9 +1,11 @@
 import express from "express";
 import passport from "passport";
-import { User } from "../../../models/index.js";
 import objection from 'objection'
-const { ValidationError } = objection
 import cleanUserInput from '../../../services/cleanUserInput.js'
+
+import { User } from "../../../models/index.js";
+const { ValidationError } = objection
+
 
 const usersRouter = new express.Router();
 
@@ -17,7 +19,6 @@ usersRouter.post("/", async (req, res) => {
       return res.status(201).json({ user: persistedUser });
     });
   } catch (error) {
-    console.log(error);
     if (error instanceof ValidationError) {
       console.log(error.data)
       return res.status(422).json({ errors: error.data });
