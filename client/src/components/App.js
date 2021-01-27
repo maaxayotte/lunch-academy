@@ -8,6 +8,7 @@ import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import RecipeIndex from "./RecipeIndex"
+import NewRecipeForm from './NewRecipeForm'
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -27,6 +28,7 @@ const App = (props) => {
         <Route exact path="/" component={RecipeIndex} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+        <Route exact path='/recipes/new' component={NewRecipeForm} />
       </Switch>
     </Router>
   );

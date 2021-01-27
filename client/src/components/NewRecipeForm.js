@@ -10,9 +10,8 @@ const NewRecipeForm = ({ postRecipe }) => {
     instructions: '',
     url: ''
   })
-}
-
-const clearForm = () => {
+  
+  const clearForm = () => {
   setNewRecipe({
     title: '',
     difficulty: '',
@@ -38,7 +37,6 @@ const handleSubmit = (event) => {
 }
 
 return(
-
   <div className='form'>
     <h1 className= 'formTitle'>Add a new recipe!</h1>
     <form onSubmit={handleSubmit}>
@@ -54,7 +52,8 @@ return(
 
       <label>
         Difficulty:
-        <select value={newRecipe.difficulty} onChange={handleInputChange}>
+        <select name='difficulty' onChange={handleInputChange}>
+          <option></option>
           <option value='easy'>Easy</option>
           <option value='intermediate'>Intermediate</option>
           <option value='advanced'>Advanced</option>
@@ -63,7 +62,8 @@ return(
 
       <label>
         Diet Type:
-        <select value={newRecipe.dietType} onChange={handleInputChange}>
+        <select name='dietType' onChange={handleInputChange}>
+          <option></option>
           <option value='vegetarian'>Vegetarian</option>
           <option value='vegan'>Vegan</option>
           <option value='meat'>Meat</option>
@@ -103,10 +103,11 @@ return(
       </label>
 
       <label>
+        URL:
         <input 
           type='text'
           name='url'
-          onchange={handleInputChange}
+          onChange={handleInputChange}
           value={newRecipe.url}
         />
       </label>
@@ -117,5 +118,9 @@ return(
     </form>
   </div>
 )
+}
+
+
+
 
 export default NewRecipeForm

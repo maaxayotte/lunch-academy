@@ -1,5 +1,4 @@
 import { Recipe } from "../../models/index.js"
-
 class RecipeSeeder {
   static async seed() {
     const recipesData = [
@@ -9,7 +8,10 @@ class RecipeSeeder {
         cookTime: "25 min", 
         description: "hot, hot, hot!", 
         ingredients: "mixed veggies, soy sauce", 
-        instructions: "put it in a pan until it tastes gud"
+        instructions: "put it in a pan until it tastes gud",
+        difficulty: "easy",
+        diet: "Vegan",
+        userId: 1
       },
       {
         name: "Easy Peanut Butter Cookies", 
@@ -17,10 +19,12 @@ class RecipeSeeder {
         cookTime: "1 hr", 
         description: "super easy and fun to make!", 
         ingredients: "1 C peanut butter, 1 egg, 1 C sugar", 
-        instructions: "preheat oven to 350F, mix all ingredients together, scoop 1TBS of dough and shape into balls, flatten with fork for classic peanut butter cookie shape, bake for approx 10 min. Enjoy!"
+        instructions: "preheat oven to 350F, mix all ingredients together, scoop 1TBS of dough and shape into balls, flatten with fork for classic peanut butter cookie shape, bake for approx 10 min. Enjoy!",
+        difficulty: "easy",
+        diet: "None",
+        userId: 1
       }
     ]
-
     for (const singleRecipeData of recipesData) {
       const currentRecipe = await Recipe.query().findOne(singleRecipeData)
       if (!currentRecipe) {
@@ -29,5 +33,4 @@ class RecipeSeeder {
     }
   }
 }
-
 export default RecipeSeeder
