@@ -20,8 +20,8 @@ recipesRouter.get("/:id", async (req, res) => {
   try {
     const id = req.params.id
     const recipe = await Recipe.query().findById(id)
-    
-    return res.status(200).json({ recipe })
+    const serializedRecipe = RecipeSerializer.getDetails(recipe)
+    return res.status(200).json({ recipe: serializedRecipe })
   } catch (error) {
     return res.status(500).json({ errors: error })
   }

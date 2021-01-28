@@ -24,6 +24,7 @@ const RecipeShow = (props) => {
   useEffect(() => {
     getRecipe()
   }, [])
+
   return (
     <div className="background-runner" >
       <div className="text-center main-container">
@@ -32,15 +33,21 @@ const RecipeShow = (props) => {
         <div className="grid-x grid-margin-x recipe-top">
           <div className="cell small-4">
             <span className="recipe-column-names">
-              Diet Type:</span> {recipe.diet}
+              Diet Type:
+            </span>
+            {recipe.diet}
           </div>
           <div className="cell small-4">
             <span className="recipe-column-names">
-              Cook Time:</span> {recipe.cookTime}
+              Cook Time:
+            </span> 
+            {recipe.cookTime}
           </div>
           <div className="cell small-4">
             <span className="recipe-column-names">
-              Recipe Difficulty:</span> {recipe.difficulty}
+              Recipe Difficulty:
+            </span> 
+            {recipe.difficulty}
           </div>
         </div>
 
@@ -53,7 +60,7 @@ const RecipeShow = (props) => {
           </div>
           <div className="instructions-div">
             <div className="recipe-column-names ingrdt-instrcs-title">
-            Cooking Instructions:
+              Cooking Instructions:
           </div>
             {recipe.instructions}
           </div>
