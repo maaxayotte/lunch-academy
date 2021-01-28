@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const ObjectionModel = require("objection").Model;
+const ObjectionModel = require('objection').Model;
 
 /**
  * Abstract model for Transporter ORM

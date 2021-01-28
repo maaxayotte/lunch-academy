@@ -1,7 +1,8 @@
-import { Recipe } from "../../models/index.js"
+import { Recipe, User } from "../../models/index.js"
 
 class RecipeSeeder {
   static async seed() {
+    const user = await User.query().findOne({email: "josh@josh.com"})
     const recipesData = [
       {
         name: "Stir Fry", 
@@ -12,7 +13,7 @@ class RecipeSeeder {
         instructions: "put it in a pan until it tastes gud",
         difficulty: "easy",
         diet: "Vegan",
-        userId: 1
+        userId: user.id
       },
       {
         name: "Peanut Butter Cookies", 
@@ -23,7 +24,7 @@ class RecipeSeeder {
         instructions: "preheat oven to 350F, mix all ingredients together, scoop 1TBS of dough and shape into balls, flatten with fork for classic peanut butter cookie shape, bake for approx 10 min. Enjoy!",
         difficulty: "easy",
         diet: "None",
-        userId: 1
+        userId: user.id
       },
       {
         name: "Sweet And Spicy Tofu", 
@@ -34,7 +35,7 @@ class RecipeSeeder {
         instructions: "ADVANCE PREP: Drain and remove tofu from package. Slice the block of tofu into two 1/2 inch thin planks and place on a stack of 4-5 folded paper towels, placing an additional stack of paper towels on top. Set something heavyish on top (I use a cast iron skillet) to make a make-shift tofu press for water removal. Allow to sit. I usually start my tofu about 30 minutes before I want to start cooking. Once the water has been pressed from your tofu, cut each plank into 8 bite-sized cubes, for 16 pieces total. Sprinkle either cornstarch or arrowroot starch over the tofu and gently toss until evenly coated and no powdery spots remain. (This light coating prevents sticking and gets the outside of the tofu nice and crispy!) WHILE YOU PRESS YOUR TOFU, LET'S MAKE THE SAUCE! Measure out water, soy sauce, sugar, sriracha, honey, and garlic in a small sauce pan and bring to a boil. Start with 1 TBSP Sriracha then add extra as desired at the end after taste-testing the spice level. You can always add more at the end if desired.",
         difficulty: "easy",
         diet: "None",
-        userId: 1
+        userId: user.id
       }
     ]
 

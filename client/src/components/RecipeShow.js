@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import ReviewTile from './ReviewTile'
 
 
 const RecipeShow = (props) => {
 
-  const [recipe, setRecipe] = useState({})
+  const [recipe, setRecipe] = useState({
+    reviews: [],
+    users: []
+  })
 
   const getRecipe = async () => {
     try {
@@ -24,6 +28,25 @@ const RecipeShow = (props) => {
   useEffect(() => {
     getRecipe()
   }, [])
+
+  // debugger  
+
+  const reviewTiles = recipe.reviews.map(reviewObject => {
+    // debugger
+    const user = recipe.users.map(userObject => {
+      
+    })
+    return (
+      <ReviewTile
+        key={reviewObject.id}
+        {...reviewObject}
+        user={user}
+      />
+    )
+  })
+
+  // debugger
+
   return (
     <div className="background-runner" >
       <div className="text-center main-container">
@@ -59,6 +82,11 @@ const RecipeShow = (props) => {
           </div>
         </div>
       </div>
+
+      <div>
+        {reviewTiles}
+      </div>
+
     </div>
 
   )
