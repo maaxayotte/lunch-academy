@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-
 const RecipeTile = ({ id, name, rating, description}) => {
   return (
     <div className="recipe-tile">

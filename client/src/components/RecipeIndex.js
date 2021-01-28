@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import RecipeTile from "./RecipeTile"
 
-
 const RecipeIndex = props => {
   const [recipes, setRecipes] = useState([])
 

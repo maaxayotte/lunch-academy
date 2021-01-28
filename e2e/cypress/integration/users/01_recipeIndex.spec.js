@@ -15,11 +15,6 @@ describe("Recipes Index", () => {
     })
     cy.visit('/')
   })
-	
-  it('has a heading', () => {
-    cy.get('h1')
-    .should('have.text', "Top Rated Recipes")
-  })
 
   it("lists all recipes", () => {
     cy.get(".recipe-tile")
