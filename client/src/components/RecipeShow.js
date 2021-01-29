@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import ReviewTile from './ReviewTile'
 
-
 const RecipeShow = (props) => {
 
   const [recipe, setRecipe] = useState({
-    reviews: [],
-    users: []
+    reviews: []
   })
-
+  
   const getRecipe = async () => {
+    const id = props.match.params.id
     try {
-      const id = props.match.params.id
       const response = await fetch(`/api/v1/recipes/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} ${response.statusText}`
@@ -19,7 +17,6 @@ const RecipeShow = (props) => {
         throw (error)
       }
       const recipesBody = await response.json()
-      debugger
       setRecipe(recipesBody.recipe)
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -30,31 +27,20 @@ const RecipeShow = (props) => {
     getRecipe()
   }, [])
 
-  // debugger  
-
-  //this needs to be fixed to pass down user names for each 
-
-  // const reviewTiles = recipe.reviews.map(reviewObject => {
-  //   // debugger
-  //   const user = recipe.users.map(userObject => {
-  //     return user
-  //   })
-  //   return (
-  //     <ReviewTile
-  //       key={reviewObject.id}
-  //       {...reviewObject}
-  //       user={user}
-  //     />
-  //   )
-  // })
-
-  // debugger
+  const reviewTiles = recipe.reviews.map(review => {
+    return (
+      <ReviewTile
+        key={review.id}
+        review={review}
+      />
+    )
+  })
 
   return (
     <div className="background-runner" >
       <div className="text-center main-container">
         <h1 className="recipe-name">{recipe.name}</h1>
-
+        
         <div className="grid-x grid-margin-x recipe-top">
           <div className="cell small-4">
             <span className="recipe-column-names">
@@ -91,13 +77,12 @@ const RecipeShow = (props) => {
           </div>
         </div>
       </div>
-
-      <div>
-       
-      </div>
-
+      
+    <div>
+      {reviewTiles}
     </div>
 
+    </div>
   )
 }
 

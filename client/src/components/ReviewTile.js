@@ -1,16 +1,16 @@
 import React from 'react'
 
 const ReviewTile = (props) => {
-  debugger
+  
   return (
     <div>
-      <h1>
-        {props.rating}
-      </h1>
       <h2>
-        {props.description}
-        {props.user.userName}
+        this is the review TILE
       </h2>
+      {props.review.user.userName}
+      {props.review.vote}
+      {props.review.rating}
+      {props.review.description}
     </div>
   )
 }
