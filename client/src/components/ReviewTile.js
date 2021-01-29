@@ -9,6 +9,7 @@ const ReviewTile = (props) => {
       </h1>
       <h2>
         {props.description}
+        {props.user.userName}
       </h2>
     </div>
   )

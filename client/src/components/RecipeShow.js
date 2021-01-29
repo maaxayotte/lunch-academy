@@ -19,6 +19,7 @@ const RecipeShow = (props) => {
         throw (error)
       }
       const recipesBody = await response.json()
+      debugger
       setRecipe(recipesBody.recipe)
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -31,19 +32,21 @@ const RecipeShow = (props) => {
 
   // debugger  
 
-  const reviewTiles = recipe.reviews.map(reviewObject => {
-    // debugger
-    const user = recipe.users.map(userObject => {
-      
-    })
-    return (
-      <ReviewTile
-        key={reviewObject.id}
-        {...reviewObject}
-        user={user}
-      />
-    )
-  })
+  //this needs to be fixed to pass down user names for each 
+
+  // const reviewTiles = recipe.reviews.map(reviewObject => {
+  //   // debugger
+  //   const user = recipe.users.map(userObject => {
+  //     return user
+  //   })
+  //   return (
+  //     <ReviewTile
+  //       key={reviewObject.id}
+  //       {...reviewObject}
+  //       user={user}
+  //     />
+  //   )
+  // })
 
   // debugger
 
@@ -55,15 +58,21 @@ const RecipeShow = (props) => {
         <div className="grid-x grid-margin-x recipe-top">
           <div className="cell small-4">
             <span className="recipe-column-names">
-              Diet Type:</span> {recipe.diet}
+              Diet Type:
+            </span>
+            {recipe.diet}
           </div>
           <div className="cell small-4">
             <span className="recipe-column-names">
-              Cook Time:</span> {recipe.cookTime}
+              Cook Time:
+            </span> 
+            {recipe.cookTime}
           </div>
           <div className="cell small-4">
             <span className="recipe-column-names">
-              Recipe Difficulty:</span> {recipe.difficulty}
+              Recipe Difficulty:
+            </span> 
+            {recipe.difficulty}
           </div>
         </div>
 
@@ -76,7 +85,7 @@ const RecipeShow = (props) => {
           </div>
           <div className="instructions-div">
             <div className="recipe-column-names ingrdt-instrcs-title">
-            Cooking Instructions:
+              Cooking Instructions:
           </div>
             {recipe.instructions}
           </div>
@@ -84,7 +93,7 @@ const RecipeShow = (props) => {
       </div>
 
       <div>
-        {reviewTiles}
+       
       </div>
 
     </div>
