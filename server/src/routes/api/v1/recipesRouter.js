@@ -16,7 +16,6 @@ recipesRouter.get("/", async (req, res) => {
   }
 })
 
-
 recipesRouter.get("/:id", async (req, res) => {
   try {
     const id = req.params.id
@@ -40,8 +39,7 @@ recipesRouter.get("/new", async (req, res) => {
 })
 
 recipesRouter.post('/', async (req, res) => {
-  const {title, difficulty, dietType, cookTime, ingredients, instructions, url} = req.body
-  const formInput = cleanUserInput({ title, difficulty, dietType, cookTime, ingredients, instructions, url })
+  const formInput = cleanUserInput(req.body)
   try {
     const newRecipe = await Recipe.query().insertAndFetch(formInput)
     return res.status(201).json({ recipe: newRecipe })
