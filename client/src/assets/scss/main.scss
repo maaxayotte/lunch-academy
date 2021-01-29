@@ -1,7 +1,7 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
-// place global css here
+place global css here
 *,
 *::before,
 *::after {
@@ -22,9 +22,14 @@
 
 #hideToggle {
   display: none;
+  color: #5EAAA8;
 }
 
 .lunch-nav {
   color: #5EAAA8;
   font-family: poppins, sans-serif; 
+}
+
+.icon {
+  color: #5EAAA8;
 }

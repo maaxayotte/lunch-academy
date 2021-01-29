@@ -25,7 +25,7 @@ const TopBar = ({ user }) => {
     if (burger.style.display === "block") {
       burger.style.display = "none";
     } else {
-      burger.style.display = "block";
+      burger.style.display = "block"
     }
   }
 
@@ -35,9 +35,11 @@ const TopBar = ({ user }) => {
         <ul className='menu' id='top-bar-colors'>
           <li className='menu-text'></li>
           <a href="javascript:void(0);" className="icon" onClick={hamburgerMenu}><i className="fa fa-bars"></i></a>
-          <li><Link className="lunch-nav" to='/'>Lunch Academy</Link></li>
+          <li>
+            <Link className="lunch-nav" to='/'>Lunch Academy</Link>
+          </li>
           <div id='hideToggle'>
-            <li className='menu'><Link to='/recipes/new'>Add New Recipe</Link></li>
+            <li id='menuItem' className='menu'><Link to='/recipes/new'>Add New Recipe</Link></li>
           </div>
         </ul>
       </div>
