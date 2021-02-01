@@ -86,7 +86,7 @@ return(
           Title:
           <input
             type='text'
-            name='title'
+            name='name'
             onChange={handleInputChange}
             value={newRecipe.title}
           />
