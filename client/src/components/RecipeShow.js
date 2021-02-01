@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import ReviewTile from './ReviewTile'
+import NewReviewForm from './NewReviewForm'
 
 const RecipeShow = (props) => {
 
   const [recipe, setRecipe] = useState({
     reviews: []
   })
-  
+
   const getRecipe = async () => {
     const id = props.match.params.id
     try {
@@ -40,7 +41,7 @@ const RecipeShow = (props) => {
     <div className="background-runner" >
       <div className="text-center main-container">
         <h1 className="recipe-name">{recipe.name}</h1>
-        
+
         <div className="grid-x grid-margin-x recipe-top">
           <div className="cell small-4">
             <span className="recipe-column-names">
@@ -51,13 +52,13 @@ const RecipeShow = (props) => {
           <div className="cell small-4">
             <span className="recipe-column-names">
               Cook Time:
-            </span> 
+            </span>
             {recipe.cookTime}
           </div>
           <div className="cell small-4">
             <span className="recipe-column-names">
               Recipe Difficulty:
-            </span> 
+            </span>
             {recipe.difficulty}
           </div>
         </div>
@@ -76,12 +77,15 @@ const RecipeShow = (props) => {
             {recipe.instructions}
           </div>
         </div>
-      </div>
-      
-    <div>
-      {reviewTiles}
-    </div>
 
+          <div>
+            <NewReviewForm />
+          </div>
+
+        <div>
+          {reviewTiles}
+        </div>
+      </div>
     </div>
   )
 }
