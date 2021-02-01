@@ -20,7 +20,7 @@ const TopBar = ({ user }) => {
     </li>,
   ];
 
-  function hamburgerMenu() {
+  const hamburgerMenu = () => {
     var burger = document.getElementById("hideToggle");
     if (burger.style.display === "block") {
       burger.style.display = "none";
