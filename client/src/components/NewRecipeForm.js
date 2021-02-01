@@ -6,6 +6,7 @@ import translateSeverErrors from './../services/translateServerErrors.js'
 const NewRecipeForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
+
   const [newRecipeId, setNewRecipeId] = useState([])
   const [newRecipe, setNewRecipe] = useState({
     title: '',
@@ -17,16 +18,16 @@ const NewRecipeForm = (props) => {
     url: ''
   })
 
-  const addNewRecipe = async (formPayload) => {
+  const addNewRecipe = async () => {
     try {
-      const response = await fetch('/api/v1/recipes', {
+      const response = await fetch('/api/v1/recipes/new', {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json'
         }),
-        body: JSON.stringify(formPayload)
+        body: JSON.stringify(newRecipe)
       })
-      if (!response.ok){
+      if (!response.ok) {
         if(response.status === 422) {
           const body = await response.json()
           const newErrors = translateSeverErrors(body.errors)
@@ -68,8 +69,8 @@ const handleInputChange = event => {
 }
 
 const handleSubmit = (event) => {
-  event.preventDefault()
-  addNewRecipe(newRecipe)
+  // event.preventDefault()
+  addNewRecipe()
   clearForm()
 }
 
