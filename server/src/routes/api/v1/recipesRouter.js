@@ -8,8 +8,8 @@ const recipesRouter = express.Router()
 recipesRouter.get("/", async (req, res) => {
   try {
     const recipes = await Recipe.query()
-    const serializedRecipes = recipes.map(recipe => RecipeSerializer.getReviewsDetails(recipe))
-    return res.status(200).json({ recipes: serializedRecipes})
+    const serializedRecipes = recipes.map(recipe => RecipeSerializer.getDetails(recipe))
+    return res.status(200).json({ recipes: serializedRecipes })
   } catch(error){
     console.log(error)
     return res.status(500).json({ errors: error })
