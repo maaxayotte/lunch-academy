@@ -9,7 +9,7 @@ exports.up = async (knex) => {
   return knex.schema.createTable("recipes", (table) => {
     table.bigIncrements("id")
     table.string("name").notNullable().unique()
-    table.integer("rating").notNullable()
+    table.integer("rating")
     table.string("cookTime").notNullable()
     table.string("description")
     table.text("ingredients").notNullable()
