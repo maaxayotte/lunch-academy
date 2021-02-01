@@ -14,7 +14,6 @@ class RecipeSerializer {
       "url", 
       "difficulty", 
       "diet", 
-      "userId" 
     ]
 
     let serializedRecipe = {}
@@ -38,7 +37,6 @@ class RecipeSerializer {
       "url", 
       "difficulty", 
       "diet", 
-      "userId" 
     ]
 
     let serializedRecipe = {}

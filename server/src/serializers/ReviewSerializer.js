@@ -4,8 +4,6 @@ class ReviewSerializer {
   static async getReviewDetails(review) {
     const allowedAttributes = [
       "id",
-      "userId",
-      "recipeId",
       "vote",
       "rating",
       "description"

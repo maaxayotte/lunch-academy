@@ -1,7 +1,8 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowAltCircleUp, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons'
 
 const ReviewTile = (props) => {
-
   return (
     <div className="text-center main-container review-container">
 
@@ -20,13 +21,16 @@ const ReviewTile = (props) => {
 
       <div className="grid-x grid-margin-x">
         <div className="grid-x grid-margin-x cell small-6">
-          <i class="far fa-arrow-alt-circle-up fa-2x cell small-2"></i>
-          <div className="vote-number">
-          {props.review.vote}
+          <div className="far fa-2x cell small-2">
+            <FontAwesomeIcon icon={faArrowAltCircleUp} />
           </div>
-          <i class="far fa-arrow-alt-circle-down fa-2x cell small-2"></i>
+          <div className="vote-number cell small-2">
+            {props.review.vote}
+          </div>
+          <div className="far fa-2x cell small-2">
+            <FontAwesomeIcon icon={faArrowAltCircleDown} />
+          </div>
         </div>
-
       </div>
     </div>
   )
