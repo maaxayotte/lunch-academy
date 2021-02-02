@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import ErrorList from './ErrorList.js'
-import translateSeverErrors from './../services/translateServerErrors.js'
-
-//test
+import translateServerErrors from './../services/translateServerErrors.js'
 
 const NewRecipeForm = (props) => {
 
@@ -34,7 +32,7 @@ const NewRecipeForm = (props) => {
       if (!response.ok) {
         if(response.status === 422) {
           const body = await response.json()
-          const newErrors = translateSeverErrors(body.errors)
+          const newErrors = translateServerErrors(body.errors)
           return setErrors(newErrors)
         } else {
           const errorMessage = `${response.status} (${response.statusText})`

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
 import NewRecipeForm from "./../NewRecipeForm"
 
-
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
     <li key='sign-in'>
@@ -41,7 +40,7 @@ const TopBar = ({ user }) => {
             <Link className="lunch-nav" to='/'>Lunch Academy</Link>
           </li>
           <div id='hideToggle'>
-            <li id='menuItem' className='menu'><Link to='/new-recipe'>Add New Recipe</Link></li>
+            <li id='menuItem' className='menu'><Link to='/recipes/new'>Add New Recipe</Link></li>
           </div>
         </ul>
       </div>
