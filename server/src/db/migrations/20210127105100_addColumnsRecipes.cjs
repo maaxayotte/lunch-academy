@@ -9,7 +9,6 @@ exports.up = async (knex) => {
   return knex.schema.table("recipes", (table) => {
     table.string("difficulty").notNullable()
     table.string("diet").notNullable()
-    table.bigInteger("userId").index().notNullable().unsigned().references("users.id")
   })
 }
 
@@ -20,6 +19,5 @@ exports.down = (knex) => {
   return knex.schema.table("recipes", (table) => {
     table.dropColumn("difficulty")
     table.dropColumn("diet")
-    table.dropColumn("userId")
   })
 }

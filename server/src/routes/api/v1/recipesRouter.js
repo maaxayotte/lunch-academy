@@ -29,11 +29,10 @@ recipesRouter.get('/new-recipe', async (req, res) => {
 
 recipesRouter.post('/', async (req, res) => {
   const { body } = req
-  const userId = req.user.id
   const cleanedFormData = cleanUserInput(body)
 
   try {
-    const newRecipe = await Recipe.query().insertAndFetch({...cleanedFormData, userId})
+    const newRecipe = await Recipe.query().insertAndFetch(cleanedFormData)
     return res.status(201).json({ recipe: newRecipe })
   } catch (error) {
     if (error instanceof ValidationError) {

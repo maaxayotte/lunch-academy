@@ -41,7 +41,7 @@ const TopBar = ({ user }) => {
             <Link className="lunch-nav" to='/'>Lunch Academy</Link>
           </li>
           <div id='hideToggle'>
-            <li id='menuItem' className='menu'><Link to='/recipes/new'>Add New Recipe</Link></li>
+            <li id='menuItem' className='menu'><Link to='/new-recipe'>Add New Recipe</Link></li>
           </div>
         </ul>
       </div>

@@ -15,7 +15,7 @@ class Recipe extends unique(Model) {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["name","rating", "cookTime", "ingredients", "instructions", "difficulty", "diet", "userId"],
+      required: ["name", "cookTime", "ingredients", "instructions", "difficulty", "diet"],
       properties: {
         name: { type: "string" },
         rating: { type: ["string", "integer"] },

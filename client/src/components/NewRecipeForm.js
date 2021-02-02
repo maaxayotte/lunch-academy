@@ -42,7 +42,7 @@ const NewRecipeForm = (props) => {
       } else {
         const body = await response.json()
         const newRecipe = body.recipe
-        // setNewRecipeId(newRecipe.id)
+        setNewRecipeId(newRecipe.id)
         if(body.recipe) {
           setShouldRedirect(true)
         }
@@ -80,7 +80,7 @@ const NewRecipeForm = (props) => {
 
 
 if (shouldRedirect){
-  return <Redirect to={`/recipes/${id}`} />
+  return <Redirect to={`/recipes/${newRecipeId}`} />
 }
 
 return(
