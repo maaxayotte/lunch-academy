@@ -3,8 +3,6 @@ import { Redirect } from 'react-router-dom'
 import ErrorList from './ErrorList.js'
 import translateSeverErrors from './../services/translateServerErrors.js'
 
-//commit test
-
 const NewRecipeForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
