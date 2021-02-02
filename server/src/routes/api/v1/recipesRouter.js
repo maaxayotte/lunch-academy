@@ -1,6 +1,6 @@
 import express from "express"
 import RecipeSerializer from "../../../serializers/RecipeSerializer.js"
-import { Recipe, User, Review } from "../../../models/index.js"
+import { Recipe } from "../../../models/index.js"
 import cleanUserInput from '../../../services/cleanUserInput.js'
 
 const recipesRouter = express.Router()
@@ -32,7 +32,6 @@ recipesRouter.get("/:id", async (req, res) => {
     const id = req.params.id
     const recipe = await Recipe.query().findById(id)
     const serializedRecipe = await RecipeSerializer.getReviewsDetails(recipe)
-    console.log(serializedRecipe)
     return res.status(200).json({ recipe: serializedRecipe })
   } catch (error) {
     return res.status(500).json({ errors: error })

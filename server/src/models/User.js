@@ -26,14 +26,11 @@ class User extends uniqueFunc(Model) {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['email', 'userName', 'firstName', 'lastName'],
+      required: ['email'],
 
       properties: {
         email: { type: 'string' },
-        cryptedPassword: { type: 'string' },
-        userName: { type: 'string' },
-        firstName: { type: 'string' },
-        lastName: { type: 'string' }
+        cryptedPassword: { type: 'string' }
       },
     };
   }
@@ -48,18 +45,6 @@ class User extends uniqueFunc(Model) {
         join: {
           from: 'users.id',
           to: 'reviews.userId'
-        }
-      },
-      recipes: {
-        relation: Model.ManyToManyRelation,
-        modelClass: Recipe,
-        join: {
-          from: 'users.id',
-          through: {
-            from: 'reviews.userId',
-            to: 'reviews.recipeId'
-          },
-          to: 'recipes.id'
         }
       },
       recipe: {

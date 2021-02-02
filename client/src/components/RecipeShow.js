@@ -78,9 +78,9 @@ const RecipeShow = (props) => {
           </div>
         </div>
 
-          <div>
-            <NewReviewForm />
-          </div>
+        <div>
+          <NewReviewForm />
+        </div>
 
         <div>
           {reviewTiles}
