@@ -81,7 +81,6 @@ const RecipeShow = (props) => {
       <div>
         {reviewTiles}
       </div>
-
     </div>
   )
 }

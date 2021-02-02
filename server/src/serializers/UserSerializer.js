@@ -1,5 +1,3 @@
-
-
 class UserSerializer {
   static getUserDetails(user) {
     const allowedAttributes = [
