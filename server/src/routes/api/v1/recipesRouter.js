@@ -16,7 +16,7 @@ recipesRouter.get('/', async (req, res) => {
   }
 })
 
-recipesRouter.get('/new-recipe', async (req, res) => {
+recipesRouter.get('/new', async (req, res) => {
   try {
     const recipes = await Recipe.query()
     const serializedRecipes = recipes.map(recipe => RecipeSerializer.getDetails(recipe))
@@ -38,7 +38,7 @@ recipesRouter.get("/:id", async (req, res) => {
   }
 })
 
-recipesRouter.post('/', async (req, res) => {
+recipesRouter.post('/new', async (req, res) => {
   const { body } = req
   const cleanedFormData = cleanUserInput(body)
 
