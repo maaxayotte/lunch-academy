@@ -28,9 +28,9 @@ const App = (props) => {
       <Switch>
         <Route exact path="/" component={RecipeIndex} />
         <Route exact path="/recipes" component={RecipeIndex} />
+        <Route exact path='/recipes/new' component={NewRecipeForm} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
-        <Route exact path='/recipes/new' component={NewRecipeForm} />
         <Route exact path="/recipes/:id" component={RecipeShow} />
       </Switch>
     </Router>
