@@ -16,7 +16,7 @@ recipesRouter.get('/', async (req, res) => {
   }
 })
 
-recipesRouter.get('/new', async (req, res) => {
+recipesRouter.get('/new-recipe', async (req, res) => {
   try {
     const recipes = await Recipe.query()
     const serializedRecipes = recipes.map(recipe => RecipeSerializer.getDetails(recipe))
@@ -27,13 +27,13 @@ recipesRouter.get('/new', async (req, res) => {
   }
 })
 
-recipesRouter.post('/new', async (req, res) => {
-  debugger
+recipesRouter.post('/', async (req, res) => {
   const { body } = req
+  const userId = req.user.id
   const cleanedFormData = cleanUserInput(body)
 
   try {
-    const newRecipe = await Recipe.query().insertAndFetch(cleanedFormData)
+    const newRecipe = await Recipe.query().insertAndFetch({...cleanedFormData, userId})
     return res.status(201).json({ recipe: newRecipe })
   } catch (error) {
     if (error instanceof ValidationError) {

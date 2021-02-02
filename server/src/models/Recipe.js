@@ -27,7 +27,30 @@ class Recipe extends unique(Model) {
         url: { type: "string"},
         difficulty: { type: "string"},
         diet: { type: "string"},
-        userId: { type: ["string", "integer"] }
+        userId: { type: ["integer", "string"] }
+      }
+    }
+  }
+
+  static get relationMappings() {
+    const { Review, User } = require('./index')
+
+    return {
+      reviews: {
+        relation: Model.HasManyRelation,
+        modelClass: Review,
+        join: {
+          from: 'recipes.id',
+          to: 'reviews.recipeId'
+        }
+      },
+      user: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: 'recipes.userId',
+          to: 'users.id'
+        }
       }
     }
   }
