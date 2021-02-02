@@ -2,9 +2,6 @@ class UserSerializer {
   static getUserDetails(user) {
     const allowedAttributes = [
       "email",
-      "userName",
-      "firstName",
-      "lastName",
     ]
 
     let serializedUser = {}

@@ -33,15 +33,15 @@ const NewReviewForm = ({ postReview }) => {
           <select
             id="rating"
             name="rating"
-            value={newReview.value}
+            value={newReview.rating}
             onChange={handleInputChange}
           >
             <option defaultValue>Rate this recipe 1-5 stars!</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option key="1">1</option>
+            <option key="2">2</option>
+            <option key="3">3</option>
+            <option key="4">4</option>
+            <option key="5">5</option>
           </select>
         </label>
 

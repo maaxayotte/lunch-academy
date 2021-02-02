@@ -4,8 +4,7 @@ class RecipeSerializer {
   static getDetails(recipe) {
     const allowedAttributes = [
       "id", 
-      "name", 
-      "rating", 
+      "name",  
       "description", 
       "cookTime", 
       "ingredients", 
@@ -27,8 +26,7 @@ class RecipeSerializer {
   static async getReviewsDetails(recipe) {
     const allowedAttributes = [
       "id", 
-      "name", 
-      "rating", 
+      "name",  
       "description", 
       "cookTime", 
       "ingredients", 

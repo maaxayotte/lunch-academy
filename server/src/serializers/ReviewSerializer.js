@@ -4,7 +4,6 @@ class ReviewSerializer {
   static async getReviewDetails(review) {
     const allowedAttributes = [
       "id",
-      "vote",
       "rating",
       "description"
     ]
@@ -13,9 +12,9 @@ class ReviewSerializer {
     for (const attribute of allowedAttributes) {
       serializedReview[attribute] = review[attribute]
     }
-    const user = await review.$relatedQuery('user')
-    const serializedUser = UserSerializer.getUserDetails(user)
-    serializedReview.user = serializedUser
+    // const user = await review.$relatedQuery('user')
+    // const serializedUser = UserSerializer.getUserDetails(user)
+    // serializedReview.user = serializedUser
     return serializedReview
   }
 }
