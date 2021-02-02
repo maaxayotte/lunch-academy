@@ -1,7 +1,7 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
-// place global css here
+//place global css here
 *,
 *::before,
 *::after {
@@ -13,12 +13,35 @@
   tab-size: 4;
 }
 
+#top-bar-color {
+  background-color: #F8F1F1;
+}
+
+#top-bar-colors {
+  background-color: #F8F1F1;
+}
+
+#hideToggle {
+  display: none;
+  color: #5EAAA8;
+}
+
+.lunch-nav {
+  color: #5EAAA8;
+  font-family: poppins, sans-serif; 
+}
+
+.icon {
+  color: #5EAAA8;
+}
+
 .background-runner {
   max-width: 850px;
   margin: 0 auto;
   height: 100vh;
   background-color: #f8f1f1;
 }
+
 .main-container {
   color: #444444;
   padding: 30px 30px;
