@@ -13,6 +13,21 @@
   tab-size: 4;
 }
 
+body {
+  background-image: url(https://i.pinimg.com/originals/73/92/df/7392dff05a946f7f6bdbcd48dfc20755.jpg);
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#app {
+  position: relative;
+}
+
+.top-bar {
+  position: relative; 
+}
+ 
 #top-bar-color {
   background-color: #F8F1F1;
 }
@@ -36,6 +51,7 @@
 }
 
 .background-runner {
+  position: relative;
   max-width: 850px;
   margin: 0 auto;
   height: 100vh;
@@ -76,4 +92,21 @@
 
 .instructions-div {
   padding-top: 100px;
+}
+
+.review-container {
+  padding: 10px;
+  border: #5eaaa8;
+  border-style: solid;
+  border-width: 2px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.vote-number {
+  color: #5eaaa8;
+  font-size: 20px;
 }

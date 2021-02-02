@@ -1,16 +1,15 @@
-const Model = require("./Model")
-const uniqueFactory = require("objection-unique")
+const Model = require('./Model')
+const uniqueFactory = require('objection-unique')
 
 const unique = uniqueFactory({
-  fields: ["name"],
-  identifiers: ["id"]
+  fields: ['name'],
+  identifiers: ['id']
 })
 
 class Recipe extends unique(Model) {
   static get tableName() {
-    return "recipes"
+    return 'recipes'
   }
-
 
   static get jsonSchema() {
     return {
@@ -55,5 +54,8 @@ class Recipe extends unique(Model) {
     }
   }
 }
+
+
+
 
 module.exports = Recipe
