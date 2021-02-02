@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
+import ErrorList from './ErrorList.js'
+import translateSeverErrors from './../services/translateServerErrors.js'
 
-const NewRecipeForm = ({ postRecipe }) => {
+const NewRecipeForm = (props) => {
+  const [errors, setErrors] = useState([])
+  const [shouldRedirect, setShouldRedirect] = useState(false)
+
+  const [newRecipeId, setNewRecipeId] = useState([])
   const [newRecipe, setNewRecipe] = useState({
     title: '',
     difficulty: '',
@@ -10,18 +17,49 @@ const NewRecipeForm = ({ postRecipe }) => {
     instructions: '',
     url: ''
   })
+
+  const addNewRecipe = async () => {
+    try {
+      const response = await fetch('/api/v1/recipes/new', {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(newRecipe)
+      })
+      if (!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          const newErrors = translateSeverErrors(body.errors)
+          return setErrors(newErrors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      } else {
+        const body = await response.json()
+        const newRecipe = body.recipe
+        setNewRecipeId(newRecipe.id)
+        console.log('Posted successfully!', body)
+        setShouldRedirect(true)
+      }
+    } catch(error) {
+      console.error(`Error in fetch: ${error.message}`)
+    }
+  }
   
   const clearForm = () => {
-  setNewRecipe({
-    title: '',
-    difficulty: '',
-    dietType: '',
-    cookTime: '',
-    ingredients: '',
-    instructions: '',
-    url: ''
-  })
-}
+    setNewRecipe({
+      title: '',
+      difficulty: '',
+      dietType: '',
+      cookTime: '',
+      ingredients: '',
+      instructions: '',
+      url: ''
+    })
+  }
 
 const handleInputChange = event => {
   setNewRecipe({
@@ -31,9 +69,13 @@ const handleInputChange = event => {
 }
 
 const handleSubmit = (event) => {
-  event.preventDefault()
-  postRecipe(newRecipe)
+  // event.preventDefault()
+  addNewRecipe()
   clearForm()
+}
+
+if (shouldRedirect){
+  return <Redirect to={`/recipes/${newRecipeId}`} />
 }
 
 return(
@@ -44,7 +86,7 @@ return(
           Title:
           <input
             type='text'
-            name='title'
+            name='name'
             onChange={handleInputChange}
             value={newRecipe.title}
           />

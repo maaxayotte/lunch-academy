@@ -1,6 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import SignOutButton from '../authentication/SignOutButton';
+import React from "react";
+import { Link } from "react-router-dom";
+import SignOutButton from "../authentication/SignOutButton";
+import NewRecipeForm from "./../NewRecipeForm"
+
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
