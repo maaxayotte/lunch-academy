@@ -24,9 +24,6 @@ const ReviewTile = (props) => {
           <div className="far fa-2x cell small-2">
             <FontAwesomeIcon icon={faArrowAltCircleUp} />
           </div>
-          <div className="vote-number cell small-2">
-            {props.review.vote}
-          </div>
           <div className="far fa-2x cell small-2">
             <FontAwesomeIcon icon={faArrowAltCircleDown} />
           </div>
