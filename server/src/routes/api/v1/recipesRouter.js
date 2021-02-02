@@ -38,7 +38,7 @@ recipesRouter.get("/:id", async (req, res) => {
   }
 })
 
-recipesRouter.post('/new', async (req, res) => {
+recipesRouter.post('/', async (req, res) => {
   const { body } = req
   const cleanedFormData = cleanUserInput(body)
 
