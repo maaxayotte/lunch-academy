@@ -2,8 +2,11 @@ import express from "express"
 import RecipeSerializer from "../../../serializers/RecipeSerializer.js"
 import { Recipe } from "../../../models/index.js"
 import cleanUserInput from '../../../services/cleanUserInput.js'
+import recipeReviewsRouter from './recipeReviewsRouter.js'
 
 const recipesRouter = express.Router()
+
+recipesRouter.use("/:recipeId/reviews", recipeReviewsRouter)
 
 recipesRouter.get("/", async (req, res) => {
   try {

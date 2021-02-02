@@ -1,15 +1,10 @@
 import React, { useState } from 'react'
 
-const NewReviewForm = props => {
+const NewReviewForm = ({ postReview }) => {
   const [newReview, setNewReview] = useState({
     rating: '',
     description: ''
   })
-  const [errors, setErrors] = useState([])
-
-  const addNewReview = async () => {
-    
-  }
 
   const clearForm = () => {
     setNewReview({
@@ -25,9 +20,15 @@ const NewReviewForm = props => {
     })
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    postReview(newReview)
+    clearForm()
+  }
+
   return (
     <div className='form'>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="rating">
           <select
             id="rating"
@@ -45,13 +46,15 @@ const NewReviewForm = props => {
         </label>
 
         <label htmlFor="description">
-          <input
+          <textarea
             id="description"
             type="text"
             name="description"
             value={newReview.description}
             onChange={handleInputChange}
             placeholder="Write your review here..."
+            rows="3"
+            cols="20"
           />
         </label>
 
