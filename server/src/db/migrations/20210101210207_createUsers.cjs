@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-const tableName = "users";
+const tableName = 'users';
 
 /**
- * @typedef {import("knex")} Knex
+ * @typedef {import('knex')} Knex
  */
 
 /**
@@ -14,11 +14,11 @@ exports.up = async (knex) => {
   if (!tableExists) {
     console.log(`Creating ${tableName}`);
     return knex.schema.createTable(tableName, (table) => {
-      table.bigIncrements("id");
-      table.string("email").notNullable().unique();
-      table.string("cryptedPassword").notNullable();
-      table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
-      table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
+      table.bigIncrements('id');
+      table.string('email').notNullable().unique();
+      table.string('cryptedPassword').notNullable();
+      table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now());
+      table.timestamp('updatedAt').notNullable().defaultTo(knex.fn.now());
     });
   }
 
