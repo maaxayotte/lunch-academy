@@ -20,8 +20,7 @@ class Review extends Model {
   }
 
   static get relationMappings() {
-    const User = require('./User')
-    const Recipe = require('./Recipe')
+    const {User, Recipe} = require('./index')
 
     return {
       user: {

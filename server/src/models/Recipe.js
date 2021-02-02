@@ -43,18 +43,6 @@ class Recipe extends unique(Model) {
           to: 'reviews.recipeId'
         }
       },
-      users: {
-        relation: Model.ManyToManyRelation,
-        modelClass: User,
-        join: {
-          from: 'recipes.id',
-          through: {
-            from: 'reviews.recipeId',
-            to: 'reviews.userId'
-          },
-          to: 'users.id'
-        }
-      },
       user: {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
