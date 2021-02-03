@@ -9,18 +9,23 @@ import TopBar from "./layout/TopBar";
 import RecipeIndex from "./RecipeIndex"
 import RecipeShow from "./RecipeShow"
 import NewRecipeForm from './NewRecipeForm'
+import AuthenticatedRoute from './authentication/AuthenticatedRoute'
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
+
+  const fetchCurrentUser = async () => {
+    try {
+      const user = await getCurrentUser()
+      setCurrentUser(user)
+    } catch (err) {
+      setCurrentUser(null)
+    }
+  }
+
   useEffect(() => {
-    getCurrentUser()
-      .then((user) => {
-        setCurrentUser(user);
-      })
-      .catch(() => {
-        setCurrentUser(null);
-      });
-  }, []);
+    fetchCurrentUser()
+  }, [])
   
   return (
     <Router>
@@ -28,7 +33,7 @@ const App = (props) => {
       <Switch>
         <Route exact path="/" component={RecipeIndex} />
         <Route exact path="/recipes" component={RecipeIndex} />
-        <Route exact path='/recipes/new' component={NewRecipeForm} />
+        <AuthenticatedRoute exact path='/recipes/new' component={NewRecipeForm} user={currentUser}/>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/recipes/:id" component={RecipeShow} />

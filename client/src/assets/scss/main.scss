@@ -58,10 +58,24 @@ body {
   padding: 30px 30px;
 }
 
-.recipe-name {
+.form-container {
+  color: #444444;
+  min-width: 270px;
+  width: 30vw;
+  max-width: 500px;
+  padding: 30px 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input {
+  border-radius: 8px;
+}
+
+.recipe-name, h1 {
   font-family: 'Poppins', sans-serif;
   padding: 0px;
-  color: #eb5e0b
+  color: #eb5e0b;
 }
 
 .recipe-top {
@@ -104,3 +118,46 @@ body {
   color: #5eaaa8;
   font-size: 20px;
 }
+
+.btn-div {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  --background-hue: 0;
+  --background-saturation: 0%;
+  --initial-background-lightness: 90%;
+  --background-lightness: var(--initial-background-lightness);
+  --border-lightness: calc(var(--initial-background-lightness) - 5%);
+  background-color: hsl(
+      var(--background-hue),
+      var(--background-saturation),
+      var(--background-lightness)
+  );
+
+  border: 1px solid hsl(
+      var(--background-hue),
+      var(--background-saturation),
+      var(--border-lightness)
+  );
+  
+  outline: none;
+  cursor: pointer;
+  padding: .5em 1em;;
+  border-radius: 8px;
+  width: 75%;
+  max-width: 200px;
+}
+
+.btn-primary {
+  --background-hue: 154;
+  --background-saturation: 50%;
+  --initial-background-lightness: 70%;
+  color: white;
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+  background-color: hsl(170, 50%, 42%);
+  box-shadow: 0 0 3px 0 hsl(170, 20%, 30%);
+} 
