@@ -3,6 +3,7 @@ import ReviewTile from './ReviewTile'
 import NewReviewForm from './NewReviewForm'
 import ErrorList from './ErrorList'
 import translateServerErrors from '../services/translateServerErrors.js'
+import { useParams } from 'react-router-dom'
 
 const RecipeShow = (props) => {
   const [recipe, setRecipe] = useState({
@@ -10,11 +11,11 @@ const RecipeShow = (props) => {
   })
   const [errors, setErrors] = useState([])
 
-  const recipeId = props.match.params.id
+  const { id } = useParams()
 
   const getRecipe = async () => {
     try {
-      const response = await fetch(`/api/v1/recipes/${recipeId}`)
+      const response = await fetch(`/api/v1/recipes/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} ${response.statusText}`
         const error = new Error(errorMessage);
@@ -33,13 +34,14 @@ const RecipeShow = (props) => {
 
   const postReview = async (newReviewData) => {
     try {
-      const response = await fetch(`/api/v1/recipes/${recipeId}/reviews`, {
+      const response = await fetch(`/api/v1/recipes/${id}/reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
         }),
-        body: JSON.stringify(newReviewData)
+        body: JSON.stringify({...newReviewData, userId: props.user.id})
       })
+      debugger
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json()
@@ -53,6 +55,7 @@ const RecipeShow = (props) => {
       } else {
         const body = await response.json()
         const updatedReviews = recipe.reviews.concat(body.review)
+        debugger
         setRecipe({ ...recipe, reviews: updatedReviews })
       }
     } catch (error) {
@@ -110,8 +113,8 @@ const RecipeShow = (props) => {
         </div>
 
         <div>
-          <ErrorList errors={errors}/>
-          <NewReviewForm postReview={postReview}/>
+          <ErrorList errors={errors} />
+          <NewReviewForm postReview={postReview} />
         </div>
 
         <div>

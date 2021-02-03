@@ -11,8 +11,9 @@ recipeReviewsRouter.post('/', async (req, res) => {
   const formInput = cleanUserInput(body)
   const { rating, description } = formInput
   const { recipeId } = req.params
+  const { userId } = req.body
   try {
-    const review = await Review.query().insertAndFetch({ rating, description, recipeId })
+    const review = await Review.query().insertAndFetch({ rating, description, recipeId, userId })
     return res.status(201).json({ review })
   } catch (error) {
     if (error instanceof ValidationError) {
