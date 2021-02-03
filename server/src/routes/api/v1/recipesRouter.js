@@ -1,11 +1,15 @@
 import express from 'express'
+
 import RecipeSerializer from '../../../serializers/RecipeSerializer.js'
 import cleanUserInput from '../../../services/cleanUserInput.js'
+import recipeReviewsRouter from './recipeReviewsRouter.js'
 import { Recipe } from '../../../models/index.js'
 
 const recipesRouter = express.Router()
 
-recipesRouter.get('/', async (req, res) => {
+recipesRouter.use("/:recipeId/reviews", recipeReviewsRouter)
+
+recipesRouter.get("/", async (req, res) => {
   try {
     const recipes = await Recipe.query()
     const serializedRecipes = recipes.map(recipe => RecipeSerializer.getDetails(recipe))

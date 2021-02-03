@@ -4,8 +4,7 @@ class RecipeSerializer {
   static getDetails(recipe) {
     const allowedAttributes = [
       "id", 
-      "name", 
-      "rating", 
+      "name",  
       "description", 
       "cookTime", 
       "ingredients", 
@@ -25,33 +24,16 @@ class RecipeSerializer {
   }
 
   static async getReviewsDetails(recipe) {
-    const allowedAttributes = [
-      "id", 
-      "name", 
-      "rating", 
-      "description", 
-      "cookTime", 
-      "ingredients", 
-      "instructions", 
-      "imageFile", 
-      "url", 
-      "difficulty", 
-      "diet", 
-    ]
-
-    let serializedRecipe = {}
-    for (const attribute of allowedAttributes) {
-      serializedRecipe[attribute] = recipe[attribute]
-    }
-
+    const serializedReview = this.getDetails(recipe)
+    
     const reviews = await recipe.$relatedQuery("reviews")
 
-    serializedRecipe.reviews = await Promise.all(
+    serializedReview.reviews = await Promise.all(
       reviews.map(review => {
         return ReviewSerializer.getReviewDetails(review)
       })
     )
-    return serializedRecipe
+    return serializedReview
   }
 }
 

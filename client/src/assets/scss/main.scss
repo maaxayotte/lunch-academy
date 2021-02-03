@@ -20,10 +20,6 @@ body {
   background-attachment: fixed;
 }
 
-#app {
-  position: relative;
-}
-
 .top-bar {
   position: relative; 
 }
@@ -51,7 +47,6 @@ body {
 }
 
 .background-runner {
-  position: relative;
   max-width: 850px;
   margin: 0 auto;
   height: 100vh;
@@ -78,7 +73,6 @@ body {
 }
 
 .recipe-name, h1 {
-
   font-family: 'Poppins', sans-serif;
   padding: 0px;
   color: #eb5e0b;
