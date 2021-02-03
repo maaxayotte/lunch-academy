@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import ReviewTile from './ReviewTile'
-
+import { useParams } from 'react-router'
 const RecipeShow = (props) => {
 
   const [recipe, setRecipe] = useState({
     reviews: []
   })
-
+  
+  const { id } = useParams()
   const getRecipe = async () => {
-    const id = props.match.params.id
     try {
       const response = await fetch(`/api/v1/recipes/${id}`)
       if (!response.ok) {
@@ -30,6 +30,7 @@ const RecipeShow = (props) => {
   const reviewTiles = recipe.reviews.map(review => {
     return (
       <ReviewTile
+        user={props.user}
         key={review.id}
         review={review}
       />
