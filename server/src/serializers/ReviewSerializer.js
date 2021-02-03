@@ -12,9 +12,7 @@ class ReviewSerializer {
     for (const attribute of allowedAttributes) {
       serializedReview[attribute] = review[attribute]
     }
-    // const user = await review.$relatedQuery('user')
-    // const serializedUser = UserSerializer.getUserDetails(user)
-    // serializedReview.user = serializedUser
+    
     return serializedReview
   }
 }
