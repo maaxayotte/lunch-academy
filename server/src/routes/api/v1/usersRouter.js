@@ -1,12 +1,10 @@
 import express from "express";
 import passport from "passport";
 import objection from 'objection'
-
 import cleanUserInput from '../../../services/cleanUserInput.js'
 import { User } from "../../../models/index.js"
 
 const { ValidationError } = objection
-
 
 const usersRouter = new express.Router();
 

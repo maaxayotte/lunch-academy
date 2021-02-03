@@ -8,7 +8,7 @@ const ReviewTile = (props) => {
 
       <div className="grid-x grid-margin-x">
         <div className="recipe-name cell small-6">
-          {props.review.user.userName} says...
+          User says...
         </div>
         <div className="recipe-name cell small-6">
           Rated: {props.review.rating} out of 5
