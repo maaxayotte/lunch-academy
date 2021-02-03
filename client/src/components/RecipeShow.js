@@ -9,8 +9,10 @@ const RecipeShow = (props) => {
   const [recipe, setRecipe] = useState({
     reviews: []
   })
-  const [errors, setErrors] = useState([])
+  // const [newReview, setNewReview] = useState([])
 
+  const [errors, setErrors] = useState([])
+  
   const { id } = useParams()
 
   const getRecipe = async () => {
@@ -39,9 +41,8 @@ const RecipeShow = (props) => {
         headers: new Headers({
           "Content-Type": "application/json"
         }),
-        body: JSON.stringify({...newReviewData, userId: props.user.id})
+        body: JSON.stringify({ ...newReviewData, userId: props.user.id })
       })
-      debugger
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json()
@@ -55,8 +56,8 @@ const RecipeShow = (props) => {
       } else {
         const body = await response.json()
         const updatedReviews = recipe.reviews.concat(body.review)
-        debugger
         setRecipe({ ...recipe, reviews: updatedReviews })
+        // setNewReview(body.review)
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -68,6 +69,7 @@ const RecipeShow = (props) => {
       <ReviewTile
         key={review.id}
         review={review}
+        user={review.user}
       />
     )
   })
