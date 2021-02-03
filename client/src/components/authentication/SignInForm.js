@@ -71,7 +71,7 @@ const SignInForm = () => {
 
   return (
     <div className="grid-container background-runner" onSubmit={onSubmit}>
-      <form className='form-container'>
+      <form className='main-container form-container'>
         <h1>Sign In</h1>
         <div>
           <label>

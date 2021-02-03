@@ -36,9 +36,9 @@ const RecipeIndex = props => {
   })
 
   return (
-    <div className="row">
-      <div className="small-8 small-centered columns">
-        <h1>Top Rated Recipes</h1>
+    <div className="row background-runner">
+      <div className="small-8 small-centered columns main-container">
+        <h1 className="text-center">Trending Recipes</h1>
         {recipeTiles}
       </div>
     </div>

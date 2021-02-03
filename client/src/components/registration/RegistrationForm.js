@@ -95,20 +95,32 @@ const RegistrationForm = () => {
 
   return (
     <div className='grid-container background-runner' onSubmit={onSubmit}>
-      <div className='container form-container'>
+      <div className='container main-container form-container'>
         <h1>Register.</h1>
         <form>
           <div>
             <label>
               Name
-              <input className='input' type='text' name='firstName' value={userPayload.firstName} onChange={onInputChange} />
+              <input 
+                className='input' 
+                type='text' 
+                name='firstName' 
+                value={userPayload.firstName} 
+                onChange={onInputChange} 
+              />
               <FormError error={errors.name} />
             </label>
           </div>
           <div>
             <label>
               Email
-              <input className='input' type='text' name='email' value={userPayload.email} onChange={onInputChange} />
+              <input 
+                className='input' 
+                type='text' 
+                name='email' 
+                value={userPayload.email} 
+                onChange={onInputChange} 
+              />
               <FormError error={errors.email} />
             </label>
           </div>
@@ -139,7 +151,11 @@ const RegistrationForm = () => {
             </label>
           </div>
           <div className='btn-div'>
-            <input type='submit' className='btn btn-primary' value='Register' />
+            <input 
+              type='submit' 
+              className='btn btn-primary' 
+              value='Register' 
+            />
           </div>
         </form>
       </div>

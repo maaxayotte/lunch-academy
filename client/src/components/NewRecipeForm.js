@@ -84,13 +84,14 @@ if (shouldRedirect){
 }
 
 return(
-    <div className='form'>
+    <div className='form background-runner'>
       <ErrorList errors={errors} />
-      <h1 className= 'formTitle'>Add a new recipe!</h1>
-      <form onSubmit={handleSubmit}>
+      <form className='main-container recipe-form' onSubmit={handleSubmit}>
+        <h1 className= 'text-center formTitle'>Add a new recipe!</h1>
         <label>
           Title:
           <input
+            className='input'
             type='text'
             name='name'
             onChange={handleInputChange}
@@ -101,20 +102,21 @@ return(
         <label>
           Difficulty:
           <select 
-            type= 'text'
+            className='input'
             name='difficulty' 
             onChange={handleInputChange}
             value={newRecipe.difficulty}>
             <option></option>
-            <option key='easy' value='easy'>Easy</option>
-            <option key='intermediate' value='intermediate'>Intermediate</option>
-            <option key='advanced' value='advanced'>Advanced</option>
+            <option value='easy'>Easy</option>
+            <option value='intermediate'>Intermediate</option>
+            <option value='advanced'>Advanced</option>
           </select>
         </label>
 
         <label>
           Diet Type:
           <select 
+            className='input'
             name='diet' 
             onChange={handleInputChange}
             value={newRecipe.diet}>
@@ -128,6 +130,7 @@ return(
         <label>
           Cook Time:
           <input 
+            className='input'
             type='text'
             name='cookTime'
             onChange={handleInputChange}
@@ -136,6 +139,7 @@ return(
         </label>
         <label>
           <textarea 
+            className='input'
             name= 'description'
             onChange={handleInputChange}
             value={newRecipe.description}
@@ -145,6 +149,7 @@ return(
         </label>
         <label>
           <textarea 
+            className='input'
             name= 'ingredients'
             onChange={handleInputChange}
             value={newRecipe.ingredients}
@@ -155,17 +160,19 @@ return(
 
         <label>
           <textarea 
+            className='input'
             name= 'instructions'
             onChange={handleInputChange}
             value={newRecipe.instructions}
-            rows= '8'
+            rows= '6'
             placeholder='Instructions'
           />
         </label>
 
         <label>
           URL:
-          <input 
+          <input
+            className='input' 
             type='text'
             name='url'
             onChange={handleInputChange}
@@ -173,8 +180,12 @@ return(
           />
         </label>
 
-        <div className='button-group'>
-          <input className='button' type='submit' value='Submit' />
+        <div className='button-group btn-recipe'>
+          <input 
+            className='btn btn-primary' 
+            type='submit' 
+            value='Submit' 
+          />
         </div>
       </form>
     </div>

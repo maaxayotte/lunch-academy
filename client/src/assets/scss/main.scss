@@ -55,7 +55,7 @@ body {
   max-width: 850px;
   margin: 0 auto;
   height: 100vh;
-  background-color: #f8f1f1;
+  background-color: rgba(248, 241, 241, .9);
 }
 
 .main-container {
@@ -63,15 +63,20 @@ body {
   padding: 30px 30px;
 }
 
+.recipe-form {
+   width: 75%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
 .form-container {
-  color: #444444;
   min-width: 270px;
   width: 30vw;
   max-width: 500px;
-  padding: 30px 30px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .input {
   border-radius: 8px;
 }
@@ -153,14 +158,13 @@ body {
   border-radius: 8px;
   width: 75%;
   max-width: 200px;
-  
 }
 
 .btn-primary {
-  --background-hue: 154;
-  --background-saturation: 50%;
-  --initial-background-lightness: 70%;
-  color: white;
+  --background-hue: 178;
+  --background-saturation: 35%;
+  --initial-background-lightness: 59%;
+  color: #fff;
 }
 
 .btn.btn-primary:hover, .btn.btn-primary:focus {
@@ -168,4 +172,8 @@ body {
   box-shadow: 0 0 3px 0 hsl(170, 20%, 30%);
 } 
 
-
+.btn-recipe {
+  margin-top: 25px;
+  font-size: 1.2em;
+  width: 250px;
+}

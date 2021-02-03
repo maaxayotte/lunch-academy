@@ -9,7 +9,7 @@ const RecipeTile = ({ id, name, description}) => {
           <input 
             id="recipe-button" 
             type="button" 
-            className="button" 
+            className="btn btn-primary" 
             value="See Reviews" 
           />
         </Link>
