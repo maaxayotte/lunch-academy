@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import ReviewTile from './ReviewTile'
 import { useParams } from 'react-router'
-const RecipeShow = (props) => {
 
+import ReviewTile from './ReviewTile'
+
+const RecipeShow = (props) => {
   const [recipe, setRecipe] = useState({
     reviews: []
   })
