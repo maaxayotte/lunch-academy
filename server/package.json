@@ -48,8 +48,6 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/react-fontawesome": "^0.1.14",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
