@@ -3,5 +3,6 @@
     "activityBar.background": "#053429",
     "titleBar.activeBackground": "#074939",
     "titleBar.activeForeground": "#F0FEFA"
-  }
+  },
+  "python.pythonPath": "/usr/local/bin/python3"
 }

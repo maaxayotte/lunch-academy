@@ -1,68 +1,123 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
+import ErrorList from './ErrorList.js'
+import translateServerErrors from './../services/translateServerErrors.js'
 
-const NewRecipeForm = ({ postRecipe }) => {
+const NewRecipeForm = (props) => {
+
+  const [errors, setErrors] = useState([])
+  const [shouldRedirect, setShouldRedirect] = useState(false)
+
+  const [newRecipeId, setNewRecipeId] = useState([])
   const [newRecipe, setNewRecipe] = useState({
-    title: '',
+    name: '',
     difficulty: '',
-    dietType: '',
     cookTime: '',
+    diet: '',
+    description: '',
     ingredients: '',
     instructions: '',
     url: ''
   })
+
+  const addNewRecipe = async () => {
+    try {
+      const response = await fetch('/api/v1/recipes', {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(newRecipe)
+      })
+      if (!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      } else {
+        const body = await response.json()
+        const newRecipe = body.recipe
+        setNewRecipeId(newRecipe.id)
+        if(body.recipe) {
+          setShouldRedirect(true)
+        }
+      }
+    } catch(error) {
+      console.error(`Error in fetch: ${error.message}`)
+    }
+  }
+  
+  const handleInputChange = event => {
+    setNewRecipe({
+      ...newRecipe,
+      [event.currentTarget.name]: event.currentTarget.value
+    })
+  }
+  
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    addNewRecipe(newRecipe)
+    clearForm()
+  }
   
   const clearForm = () => {
-  setNewRecipe({
-    title: '',
-    difficulty: '',
-    dietType: '',
-    cookTime: '',
-    ingredients: '',
-    instructions: '',
-    url: ''
-  })
-}
+    setNewRecipe({
+      name: '',
+      difficulty: '',
+      diet: '',
+      cookTime: '',
+      description: '',
+      ingredients: '',
+      instructions: '',
+      url: ''
+    })
+  }
 
-const handleInputChange = event => {
-  setNewRecipe({
-    ...newRecipe,
-    [event.currentTarget.name]: event.currentTarget.value
-  })
-}
 
-const handleSubmit = (event) => {
-  event.preventDefault()
-  postRecipe(newRecipe)
-  clearForm()
+if (shouldRedirect){
+  return <Redirect to={`/recipes/${newRecipeId}`} />
 }
 
 return(
     <div className='form'>
+      <ErrorList errors={errors} />
       <h1 className= 'formTitle'>Add a new recipe!</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Title:
           <input
             type='text'
-            name='title'
+            name='name'
             onChange={handleInputChange}
-            value={newRecipe.title}
+            value={newRecipe.name}
           />
         </label>
 
         <label>
           Difficulty:
-          <select name='difficulty' onChange={handleInputChange}>
+          <select 
+            type= 'text'
+            name='difficulty' 
+            onChange={handleInputChange}
+            value={newRecipe.difficulty}>
             <option></option>
-            <option value='easy'>Easy</option>
-            <option value='intermediate'>Intermediate</option>
-            <option value='advanced'>Advanced</option>
+            <option key='easy' value='easy'>Easy</option>
+            <option key='intermediate' value='intermediate'>Intermediate</option>
+            <option key='advanced' value='advanced'>Advanced</option>
           </select>
         </label>
 
         <label>
           Diet Type:
-          <select name='dietType' onChange={handleInputChange}>
+          <select 
+            name='diet' 
+            onChange={handleInputChange}
+            value={newRecipe.diet}>
             <option></option>
             <option value='vegetarian'>Vegetarian</option>
             <option value='vegan'>Vegan</option>
@@ -79,14 +134,21 @@ return(
             value={newRecipe.cookTime}
           />
         </label>
-
+        <label>
+          <textarea 
+            name= 'description'
+            onChange={handleInputChange}
+            value={newRecipe.description}
+            rows= '2'
+            placeholder='Description'
+          />
+        </label>
         <label>
           <textarea 
             name= 'ingredients'
             onChange={handleInputChange}
             value={newRecipe.ingredients}
             rows= '4'
-            cols= '50'
             placeholder='Ingredients'
           />
         </label>
@@ -97,7 +159,6 @@ return(
             onChange={handleInputChange}
             value={newRecipe.instructions}
             rows= '8'
-            cols='50'
             placeholder='Instructions'
           />
         </label>

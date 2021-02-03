@@ -73,7 +73,6 @@ const RecipeShow = (props) => {
     <div className="background-runner" >
       <div className="text-center main-container">
         <h1 className="recipe-name">{recipe.name}</h1>
-
         <div className="grid-x grid-margin-x recipe-top">
           <div className="cell small-4">
             <span className="recipe-column-names">

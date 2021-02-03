@@ -23,10 +23,10 @@ class Recipe extends unique(Model) {
         ingredients: { type: 'string' },
         instructions: { type: 'string' },
         imageFile: { type: 'string' },
-        url: { type: 'string' },
-        difficulty: { type: 'string' },
-        diet: { type: 'string' },
-        userId: { type: ['string', 'integer'] }
+        url: { type: 'string'},
+        difficulty: { type: 'string'},
+        diet: { type: 'string'},
+        userId: { type: ['integer', 'string'] }
       }
     }
   }
