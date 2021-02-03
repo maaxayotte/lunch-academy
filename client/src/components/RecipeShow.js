@@ -40,7 +40,6 @@ const RecipeShow = (props) => {
         }),
         body: JSON.stringify(newReviewData)
       })
-      // debugger
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json()
