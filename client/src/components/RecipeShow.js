@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 import ReviewTile from './ReviewTile'
+import NewReviewForm from './NewReviewForm'
+import ErrorList from './ErrorList'
+import translateServerErrors from '../services/translateServerErrors.js'
 
 const RecipeShow = (props) => {
-
+  const [errors, setErrors] = useState([])
   const [recipe, setRecipe] = useState({
     reviews: []
   })
   
   const { id } = useParams()
+
   const getRecipe = async () => {
     try {
       const response = await fetch(`/api/v1/recipes/${id}`)
@@ -28,6 +32,35 @@ const RecipeShow = (props) => {
   useEffect(() => {
     getRecipe()
   }, [])
+
+  const postReview = async (newReviewData) => {
+    try {
+      const response = await fetch(`/api/v1/recipes/${id}/reviews`, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify(newReviewData)
+      })
+      if (!response.ok) {
+        if (response.status === 422) {
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw (error)
+        }
+      } else {
+        const body = await response.json()
+        const updatedReviews = recipe.reviews.concat(body.review)
+        setRecipe({ ...recipe, reviews: updatedReviews })
+      }
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`)
+    }
+  }
 
   const reviewTiles = recipe.reviews.map(review => {
     return (
@@ -78,10 +111,15 @@ const RecipeShow = (props) => {
             {recipe.instructions}
           </div>
         </div>
-      </div>
 
-      <div>
-        {reviewTiles}
+        <div>
+          <ErrorList errors={errors}/>
+          <NewReviewForm postReview={postReview}/>
+        </div>
+
+        <div>
+          {reviewTiles}
+        </div>
       </div>
     </div>
   )

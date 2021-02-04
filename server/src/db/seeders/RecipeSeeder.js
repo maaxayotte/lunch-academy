@@ -5,8 +5,7 @@ class RecipeSeeder {
     const user = await User.query().findOne({email: "josh@josh.com"})
     const recipesData = [
       {
-        name: "Stir Fry", 
-        rating: 5, 
+        name: "Stir Fry",  
         cookTime: "25 min", 
         description: "hot, hot, hot!", 
         ingredients: "mixed veggies, soy sauce", 
@@ -16,8 +15,7 @@ class RecipeSeeder {
         userId: user.id
       },
       {
-        name: "Peanut Butter Cookies", 
-        rating: 5, 
+        name: "Peanut Butter Cookies",  
         cookTime: "1 hr", 
         description: "super easy and fun to make!", 
         ingredients: "1 C peanut butter, 1 egg, 1 C sugar", 
@@ -27,8 +25,7 @@ class RecipeSeeder {
         userId: user.id
       },
       {
-        name: "Sweet And Spicy Tofu", 
-        rating: 5, 
+        name: "Sweet And Spicy Tofu",  
         cookTime: "22 min", 
         description: "sweet and spicy tofu!", 
         ingredients: "14 oz package EXTRA FIRM tofu, 1 TBSP cornstarch or arrowroot powder plus extra as needed 2 TBSP frying oil, 1-2 TBSP sliced green onion, 1-2 tsp toasted sesame seeds, SWEET AND SPICY SRIRACHA SAUCE, 1 cup water, 1/4 cup low-sodium soy sauce or gluten-free tamari soy sauce if GF, 1/4 cup granulated sugar, 2 TBSP honey or sweet chili sauce, 2-3 cloves garlic (peeled and minced), 1-3 TBSP Sriracha, 1-2 TBSP cornstarch, 1-2 TBSP water, 1 tsp toasted sesame seeds", 
