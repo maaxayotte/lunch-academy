@@ -34,14 +34,13 @@ const RecipeShow = (props) => {
   }, [])
 
   const postReview = async (newReviewData) => {
-    const reviewDataRecipeId = { ...newReviewData, recipeId: id, userId: props.user.id }
     try {
       const response = await fetch(`/api/v1/recipes/${id}/reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
         }),
-        body: JSON.stringify(reviewDataRecipeId)
+        body: JSON.stringify(newReviewData)
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -73,6 +72,14 @@ const RecipeShow = (props) => {
       />
     )
   })
+
+  let newReviewForm = () => {
+    if (props.user !== null) {
+      return (
+        <NewReviewForm postReview={postReview} />
+      )
+    }
+  }
 
   return (
     <div className="background-runner" >
@@ -116,7 +123,7 @@ const RecipeShow = (props) => {
 
         <div>
           <ErrorList errors={errors} />
-          <NewReviewForm postReview={postReview} />
+          {newReviewForm()}
         </div>
 
         <div>

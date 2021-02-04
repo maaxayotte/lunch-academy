@@ -14,9 +14,8 @@ class ReviewSerializer {
     }
 
     const user = await review.$relatedQuery('user')
-    const serializedUser = UserSerializer.getUserDetails(user)
-    serializedReview.user = serializedUser
-    
+    serializedReview.user = UserSerializer.getUserDetails(user)
+
     return serializedReview
   }
 }
