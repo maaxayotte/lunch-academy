@@ -180,7 +180,7 @@ return(
           />
         </label>
 
-        <div className='button-group btn-recipe'>
+        <div className='button-group'>
           <input 
             className='btn btn-primary' 
             type='submit' 
