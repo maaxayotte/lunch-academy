@@ -1,7 +1,8 @@
 import express from 'express'
-import { Review } from '../../../models/index.js'
 import objection from 'objection'
 const { ValidationError } = objection
+
+import { Review } from '../../../models/index.js'
 import cleanUserInput from '../../../services/cleanUserInput.js'
 import ReviewSerializer from '../../../serializers/ReviewSerializer.js'
 

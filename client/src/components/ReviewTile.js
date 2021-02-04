@@ -3,14 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleUp, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons'
 
 const ReviewTile = (props) => {
-  // debugger
   const [selectedUpVote, setSelectedUpVote] = useState(false)
   const [selectedDownVote, setSelectedDownVote] = useState(false)
 
   let upVoteColor
   let downVoteColor
   
-
   let upVoteSelectedStatus = false
   if (selectedUpVote === props.review.id) {
     upVoteSelectedStatus = true

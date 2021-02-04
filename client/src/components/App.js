@@ -13,23 +13,27 @@ import AuthenticatedRoute from './authentication/AuthenticatedRoute'
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
-  useEffect(() => {
-    getCurrentUser()
-      .then((user) => {
-        setCurrentUser(user);
-      })
-      .catch(() => {
-        setCurrentUser(null);
-      });
-  }, []);
 
+  const fetchCurrentUser = async () => {
+    try {
+      const user = await getCurrentUser()
+      setCurrentUser(user)
+    } catch (err) {
+      setCurrentUser(null)
+    }
+  }
+
+  useEffect(() => {
+    fetchCurrentUser()
+  }, [])
+  
   return (
     <Router>
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/" component={RecipeIndex} />
         <Route exact path="/recipes" component={RecipeIndex} />
-        <Route exact path='/recipes/new' component={NewRecipeForm} />
+        <AuthenticatedRoute exact path='/recipes/new' component={NewRecipeForm} user={currentUser}/>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/recipes/:id">

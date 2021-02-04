@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+
 import ReviewTile from './ReviewTile'
 import NewReviewForm from './NewReviewForm'
 import ErrorList from './ErrorList'
 import translateServerErrors from '../services/translateServerErrors.js'
-import { useParams } from 'react-router-dom'
 
 const RecipeShow = (props) => {
+  const [errors, setErrors] = useState([])
   const [recipe, setRecipe] = useState({
     reviews: []
   })
-  // const [newReview, setNewReview] = useState([])
 
-  const [errors, setErrors] = useState([])
-  
   const { id } = useParams()
 
   const getRecipe = async () => {
@@ -67,6 +66,7 @@ const RecipeShow = (props) => {
   const reviewTiles = recipe.reviews.map(review => {
     return (
       <ReviewTile
+        user={props.user}
         key={review.id}
         review={review}
         user={review.user}
