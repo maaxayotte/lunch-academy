@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+
 import ReviewTile from './ReviewTile'
 import NewReviewForm from './NewReviewForm'
 import ErrorList from './ErrorList'
 import translateServerErrors from '../services/translateServerErrors.js'
-import { useParams } from 'react-router-dom'
 
 const RecipeShow = (props) => {
+  const [errors, setErrors] = useState([])
   const [recipe, setRecipe] = useState({
     reviews: []
   })
-
-  const [errors, setErrors] = useState([])
   
   const { id } = useParams()
 
@@ -69,6 +69,7 @@ const RecipeShow = (props) => {
     average.push(review.rating)
     return (
       <ReviewTile
+        user={props.user}
         key={review.id}
         review={review}
         user={review.user}

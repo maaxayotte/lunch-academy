@@ -8,7 +8,7 @@ class UserSerializer {
     for (const attribute of allowedAttributes) {
       serializedUser[attribute] = user[attribute]
     }
-
+  
     return serializedUser
   }
 }
