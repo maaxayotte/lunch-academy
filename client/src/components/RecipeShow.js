@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 import ReviewTile from './ReviewTile'
 import NewReviewForm from './NewReviewForm'
@@ -11,12 +11,12 @@ const RecipeShow = (props) => {
   const [recipe, setRecipe] = useState({
     reviews: []
   })
-  
+
   const { id } = useParams()
 
   const getRecipe = async () => {
     try {
-      const response = await fetch(`/api/v1/recipes/${recipeId}`)
+      const response = await fetch(`/api/v1/recipes/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} ${response.statusText}`
         const error = new Error(errorMessage);
@@ -35,7 +35,7 @@ const RecipeShow = (props) => {
 
   const postReview = async (newReviewData) => {
     try {
-      const response = await fetch(`/api/v1/recipes/${recipeId}/reviews`, {
+      const response = await fetch(`/api/v1/recipes/${id}/reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -54,8 +54,8 @@ const RecipeShow = (props) => {
         }
       } else {
         const body = await response.json()
-        const updatedReviews = recipe.reviews.concat(body.review)
-        setRecipe({ ...recipe, reviews: updatedReviews })
+        setRecipe({ ...recipe, 
+          reviews: [...recipe.reviews, body.review] })
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -68,9 +68,18 @@ const RecipeShow = (props) => {
         user={props.user}
         key={review.id}
         review={review}
+        user={review.user}
       />
     )
   })
+
+  let newReviewForm = () => {
+    if (props.user !== null) {
+      return (
+        <NewReviewForm postReview={postReview} />
+      )
+    }
+  }
 
   return (
     <div className="background-runner" >
@@ -113,8 +122,8 @@ const RecipeShow = (props) => {
         </div>
 
         <div>
-          <ErrorList errors={errors}/>
-          <NewReviewForm postReview={postReview}/>
+          <ErrorList errors={errors} />
+          {newReviewForm()}
         </div>
 
         <div>
