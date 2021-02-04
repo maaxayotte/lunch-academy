@@ -35,13 +35,14 @@ const RecipeShow = (props) => {
   }, [])
 
   const postReview = async (newReviewData) => {
+    const reviewDataRecipeId = { ...newReviewData, recipeId: id, userId: props.user.id }
     try {
       const response = await fetch(`/api/v1/recipes/${id}/reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
         }),
-        body: JSON.stringify({ ...newReviewData, userId: props.user.id })
+        body: JSON.stringify(reviewDataRecipeId)
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -55,9 +56,8 @@ const RecipeShow = (props) => {
         }
       } else {
         const body = await response.json()
-        const updatedReviews = recipe.reviews.concat(body.review)
-        setRecipe({ ...recipe, reviews: updatedReviews })
-        // setNewReview(body.review)
+        setRecipe({ ...recipe, 
+          reviews: [...recipe.reviews, body.review] })
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)

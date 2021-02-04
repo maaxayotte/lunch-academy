@@ -9,6 +9,7 @@ const ReviewTile = (props) => {
 
   let upVoteColor
   let downVoteColor
+  
 
   let upVoteSelectedStatus = false
   if (selectedUpVote === props.review.id) {
