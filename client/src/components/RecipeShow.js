@@ -9,7 +9,6 @@ const RecipeShow = (props) => {
   const [recipe, setRecipe] = useState({
     reviews: []
   })
-  // const [newReview, setNewReview] = useState([])
 
   const [errors, setErrors] = useState([])
   
@@ -64,7 +63,10 @@ const RecipeShow = (props) => {
     }
   }
 
+  let average = []
+  
   const reviewTiles = recipe.reviews.map(review => {
+    average.push(review.rating)
     return (
       <ReviewTile
         key={review.id}
@@ -74,28 +76,42 @@ const RecipeShow = (props) => {
     )
   })
 
+  function averageRating(average) {
+    let sum = 0
+    for(let i = 0; i < average.length; i++) {
+      sum += average[i]
+    }
+    return (sum / average.length).toFixed(2)
+  }
+
   return (
     <div className="background-runner" >
       <div className="text-center main-container">
         <h1 className="recipe-name">{recipe.name}</h1>
         <div className="grid-x grid-margin-x recipe-top">
-          <div className="cell small-4">
+          <div className="cell small-3">
             <span className="recipe-column-names">
               Diet Type:
             </span>
             {recipe.diet}
           </div>
-          <div className="cell small-4">
+          <div className="cell small-3">
             <span className="recipe-column-names">
               Cook Time:
             </span>
             {recipe.cookTime}
           </div>
-          <div className="cell small-4">
+          <div className="cell small-3">
             <span className="recipe-column-names">
               Recipe Difficulty:
             </span>
             {recipe.difficulty}
+          </div>
+          <div className="cell small-3">
+            <span className="recipe-column-names">
+              Average Rating:
+            </span>
+            {averageRating(average)}
           </div>
         </div>
 
