@@ -4,6 +4,8 @@ import RecipeSerializer from '../../../serializers/RecipeSerializer.js'
 import cleanUserInput from '../../../services/cleanUserInput.js'
 import recipeReviewsRouter from './recipeReviewsRouter.js'
 import { Recipe } from '../../../models/index.js'
+import objection from 'objection'
+const { ValidationError } = objection
 
 const recipesRouter = express.Router()
 

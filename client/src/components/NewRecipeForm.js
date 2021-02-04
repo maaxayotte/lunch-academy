@@ -62,7 +62,9 @@ const NewRecipeForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     addNewRecipe(newRecipe)
-    clearForm()
+    if (response.ok) {
+      clearForm()
+    }
   }
   
   const clearForm = () => {
@@ -77,7 +79,6 @@ const NewRecipeForm = (props) => {
       url: ''
     })
   }
-
 
 if (shouldRedirect){
   return <Redirect to={`/recipes/${newRecipeId}`} />
@@ -179,7 +180,6 @@ return(
             value={newRecipe.url}
           />
         </label>
-
         <div className='button-group'>
           <input 
             className='btn btn-primary' 
