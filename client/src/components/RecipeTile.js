@@ -13,32 +13,32 @@ const RecipeTile = ({ recipe }) => {
           <img src={img} />
         </div>
         <div className="rec-details">
-            <h2 className="rec-title">{recipe.name}</h2>
-            <p className="rec-text">{recipe.description}</p>
-            <p className="rec-text">{instructions}...</p>
-            <ul className="rec-info">
-              <li>
-                  Diet Type:
-                <strong>{recipe.diet}</strong>
-              </li>
-              <li>
-                Cook Time: 
-                <strong> {recipe.cookTime}</strong>
-              </li>
-              <li>
-                Difficulty: 
-                <strong> {recipe.cookTime}</strong>
-              </li>
-            </ul>
-            <Link to={`/recipes/${recipe.id}`}>
-              <input 
-                id="recipe-button" 
-                type="button" 
-                className="btn btn-primary rec-btn" 
-                value='View Recipe'
-                />
-            </Link>
-          </div>
+          <h2 className="rec-title">{recipe.name}</h2>
+          <p className="rec-text">{recipe.description}</p>
+          <p className="rec-text">{instructions}...</p>
+          <ul className="rec-info">
+            <li>
+              Diet Type:
+              <strong>{recipe.diet}</strong>
+            </li>
+            <li>
+              Cook Time: 
+            <strong> {recipe.cookTime}</strong>
+            </li>
+            <li>
+              Difficulty: 
+              <strong> {recipe.cookTime}</strong>
+            </li>
+          </ul>
+          <Link to={`/recipes/${recipe.id}`}>
+            <input 
+              id="recipe-button" 
+              type="button" 
+              className="btn btn-primary rec-btn" 
+              value='View Recipe'
+              />
+          </Link>
+        </div>
       </div>
     </div>
   )
