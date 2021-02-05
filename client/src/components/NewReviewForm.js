@@ -6,13 +6,6 @@ const NewReviewForm = ({ postReview }) => {
     description: ''
   })
 
-  const clearForm = () => {
-    setNewReview({
-      rating: '',
-      description: ''
-    })
-  }
-
   const handleInputChange = event => {
     setNewReview({
       ...newReview,
@@ -23,7 +16,10 @@ const NewReviewForm = ({ postReview }) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     postReview(newReview)
-    clearForm()
+    setNewReview({
+      rating: '',
+      description: ''
+    })
   }
 
   return (
