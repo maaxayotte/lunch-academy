@@ -23,7 +23,7 @@ const RecipeIndex = props => {
     getRecipes()
   }, [])
 
-  const recipeTiles = recipes.map(recipe => {
+  const recipeTiles = recipes.reverse().map(recipe => {
     return (
       <RecipeTile
         key={recipe.id}

@@ -65,7 +65,7 @@ const RecipeShow = (props) => {
     }
   }
   let average = []
-  const reviewTiles = recipe.reviews.map(review => {
+  const reviewTiles = recipe.reviews.reverse().map(review => {
     average.push(review.rating)
 
     return (
