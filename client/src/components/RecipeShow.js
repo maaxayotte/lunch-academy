@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar, faStoreAltSlash } from '@fortawesome/free-solid-svg-icons'
+
 import ReviewTile from './ReviewTile'
 import NewReviewForm from './NewReviewForm'
 import ErrorList from './ErrorList'
@@ -11,7 +14,7 @@ const RecipeShow = (props) => {
   const [recipe, setRecipe] = useState({
     reviews: []
   })
-  
+
   const { id } = useParams()
 
   const getRecipe = async () => {
@@ -54,23 +57,63 @@ const RecipeShow = (props) => {
         }
       } else {
         const body = await response.json()
-        const updatedReviews = recipe.reviews.concat(body.review)
-        setRecipe({ ...recipe, reviews: updatedReviews })
+        setRecipe({ ...recipe, 
+          reviews: [...recipe.reviews, body.review] })
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
-
+  let average = []
   const reviewTiles = recipe.reviews.map(review => {
+    average.push(review.rating)
+
     return (
       <ReviewTile
         user={props.user}
         key={review.id}
         review={review}
+        user={review.user}
       />
     )
   })
+
+  let newReviewForm = () => {
+    if (props.user !== null) {
+      return (
+        <NewReviewForm postReview={postReview} />
+      )
+    }
+  }
+
+  let leaveReview = 'Sign in to Leave a Review!'
+  if (props.user !== null) {
+    leaveReview = 'Leave a Review'
+  }
+  
+  const averageRating =(arr) => {
+    let sum = 0
+    for(let i = 0; i < arr.length; i++) {
+      sum += arr[i]
+    }
+    return (sum / arr.length).toFixed(0)
+  }
+  let starTile = <FontAwesomeIcon id='star' icon={faStar} />
+
+  let stars = (aver) => {
+    if (aver == 5) {
+      return <span>{starTile} {starTile} {starTile} {starTile} {starTile}</span>
+    } else if (aver == 4) {
+      return <span>{starTile} {starTile} {starTile} {starTile}</span>
+    } else if (aver == 3) {
+      return <span>{starTile} {starTile} {starTile}</span>
+    } else if (aver == 2) {
+      return <span>{starTile} {starTile}</span>
+    } else return <span>{starTile}</span>
+  }
+  
+  let starCount = averageRating(average)
+
 
   return (
     <div className="background-runner" >
@@ -79,7 +122,7 @@ const RecipeShow = (props) => {
         <div className="grid-x grid-margin-x recipe-top">
           <div className="cell small-4">
             <span className="recipe-column-names">
-              Diet Type:
+              Diet:
             </span>
             {recipe.diet}
           </div>
@@ -91,7 +134,7 @@ const RecipeShow = (props) => {
           </div>
           <div className="cell small-4">
             <span className="recipe-column-names">
-              Recipe Difficulty:
+              Difficulty:
             </span>
             {recipe.difficulty}
           </div>
@@ -111,12 +154,17 @@ const RecipeShow = (props) => {
             {recipe.instructions}
           </div>
         </div>
-
+        <hr/>
         <div>
-          <ErrorList errors={errors}/>
-          <NewReviewForm postReview={postReview}/>
+          <div className='review-title-container'>
+            <h2 className="rec-title review-title">{leaveReview}
+            </h2>
+            <h2 className="rec-title review-title">Avg Rating: {stars(starCount)}
+            </h2>
+          </div>
+          <ErrorList errors={errors} />
+          {newReviewForm()}
         </div>
-
         <div>
           {reviewTiles}
         </div>

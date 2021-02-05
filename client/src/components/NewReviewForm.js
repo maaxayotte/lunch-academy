@@ -27,10 +27,11 @@ const NewReviewForm = ({ postReview }) => {
   }
 
   return (
-    <div className='form'>
+    <div className='form main-container recipe-form'>
       <form onSubmit={handleSubmit}>
         <label htmlFor="rating">
           <select
+            className='input'
             id="rating"
             name="rating"
             value={newReview.rating}
@@ -47,6 +48,7 @@ const NewReviewForm = ({ postReview }) => {
 
         <label htmlFor="description">
           <textarea
+            className='input'
             id="description"
             type="text"
             name="description"
@@ -58,8 +60,12 @@ const NewReviewForm = ({ postReview }) => {
           />
         </label>
 
-        <div className='button-group'>
-          <input className='button' type='submit' value='Submit' />
+        <div>
+          <input 
+            className='btn btn-primary rev-form' 
+            type='submit' 
+            value='Submit' 
+          />
         </div>
       </form>
     </div>

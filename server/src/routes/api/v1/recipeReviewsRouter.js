@@ -13,8 +13,9 @@ recipeReviewsRouter.post('/', async (req, res) => {
   const formInput = cleanUserInput(body)
   const { rating, description } = formInput
   const { recipeId } = req.params
+  const  userId  = req.user.id
   try {
-    const review = await Review.query().insertAndFetch({ rating, description, recipeId })
+    const review = await Review.query().insertAndFetch({ rating, description, recipeId, userId })
     const serializedReview = await ReviewSerializer.getReviewDetails(review)
     return res.status(201).json({ review: serializedReview })
   } catch (error) {

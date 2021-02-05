@@ -107,9 +107,9 @@ return(
             onChange={handleInputChange}
             value={newRecipe.difficulty}>
             <option></option>
-            <option value='easy'>Easy</option>
-            <option value='intermediate'>Intermediate</option>
-            <option value='advanced'>Advanced</option>
+            <option value='Easy'>Easy</option>
+            <option value='Medium'>Medium</option>
+            <option value='Hard'>Hard</option>
           </select>
         </label>
 
@@ -121,9 +121,9 @@ return(
             onChange={handleInputChange}
             value={newRecipe.diet}>
             <option></option>
-            <option value='vegetarian'>Vegetarian</option>
-            <option value='vegan'>Vegan</option>
-            <option value='meat'>Meat</option>
+            <option value='Vegetarian'>Vegetarian</option>
+            <option value='Vegan'>Vegan</option>
+            <option value='Meat'>Meat</option>
           </select>
         </label>
 
