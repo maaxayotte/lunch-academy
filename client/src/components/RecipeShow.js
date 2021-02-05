@@ -114,7 +114,6 @@ const RecipeShow = (props) => {
   
   let starCount = averageRating(average)
 
-
   return (
     <div className="background-runner" >
       <div className="text-center main-container">
