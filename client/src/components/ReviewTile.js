@@ -1,19 +1,29 @@
 import React from 'react'
 
-const ReviewTile = (props) => {
-  return (
-    <div className="text-center main-container review-container">
+const img = 'https://www.pngitem.com/pimgs/m/176-1768824_information-feedback-exchange-of-ideas-interview-feedback-clipart.png'
 
-      <div className="grid-x grid-margin-x">
-        <div className="recipe-name cell small-6">
-          {props.review.user.email} says...
+const ReviewTile = (props) => {
+  
+  return (
+    <div>
+      <div className="rev-tile-container">
+        <div className="recipe">
+          <div className="rec-img">
+          <img src={img} />
+          </div>
+        <div className="rec-details">
+            <h2 className="rec-title">
+              {props.review.user.firstName} says...
+            </h2>
+            <p className="rec-text">{props.review.description}</p>
+            <ul className="rec-info">
+              <li>
+                Rating:
+                <strong>{props.review.rating} stars</strong>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="recipe-name cell small-6">
-          Rated: {props.review.rating} out of 5
-        </div>
-      </div>
-      <div>
-        {props.review.description}
       </div>
     </div>
   )

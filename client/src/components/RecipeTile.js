@@ -1,20 +1,45 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const RecipeTile = ({ id, name, description}) => {
+const RecipeTile = ({ recipe }) => {
+  const img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz6AeD8k5zdQ2C8QscZtPKLqGJ5IBw8bYesg&usqp=CAU'
+
+  const instructions = recipe.instructions.substring(0,100)
+
   return (
-    <div className="recipe-tile">
-        <h2>{name}</h2>
-        <Link to={`/recipes/${id}`}>
-          <input 
-            id="recipe-button" 
-            type="button" 
-            className="button" 
-            value="See Reviews" 
-          />
-        </Link>
-        <p>Rating: 5 Stars</p>
-        <p>{description}</p>
+    <div className="rec-tile-container">
+      <div className="recipe" >
+        <div className="rec-img">
+          <img src={img} />
+        </div>
+        <div className="rec-details">
+          <h2 className="rec-title">{recipe.name}</h2>
+          <p className="rec-text">{recipe.description}</p>
+          <p className="rec-text">{instructions}...</p>
+          <ul className="rec-info">
+            <li>
+              Diet Type:
+              <strong>{recipe.diet}</strong>
+            </li>
+            <li>
+              Cook Time: 
+            <strong> {recipe.cookTime}</strong>
+            </li>
+            <li>
+              Difficulty: 
+              <strong> {recipe.cookTime}</strong>
+            </li>
+          </ul>
+          <Link to={`/recipes/${recipe.id}`}>
+            <input 
+              id="recipe-button" 
+              type="button" 
+              className="btn btn-primary rec-btn" 
+              value='View Recipe'
+              />
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }

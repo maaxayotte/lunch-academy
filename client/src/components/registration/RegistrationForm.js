@@ -95,8 +95,8 @@ const RegistrationForm = () => {
 
   return (
     <div className='grid-container background-runner' onSubmit={onSubmit}>
-      <div className='container form-container'>
-        <h1>Register.</h1>
+      <div className='container main-container form-container'>
+        <h1>Register</h1>
         <form>
           <div>
             <label>
