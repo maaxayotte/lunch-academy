@@ -59,13 +59,14 @@ const RecipeShow = (props) => {
         const body = await response.json()
         setRecipe({ ...recipe, 
           reviews: [...recipe.reviews, body.review] })
+        setErrors([])
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
   let average = []
-  const reviewTiles = recipe.reviews.reverse().map(review => {
+  const reviewTiles = recipe.reviews.map(review => {
     average.push(review.rating)
 
     return (
@@ -99,6 +100,7 @@ const RecipeShow = (props) => {
     return (sum / arr.length).toFixed(0)
   }
   let starTile = <FontAwesomeIcon id='star' icon={faStar} />
+  let noReviews = "Be the First!"
 
   let stars = (aver) => {
     if (aver == 5) {
@@ -109,7 +111,11 @@ const RecipeShow = (props) => {
       return <span>{starTile} {starTile} {starTile}</span>
     } else if (aver == 2) {
       return <span>{starTile} {starTile}</span>
-    } else return <span>{starTile}</span>
+    } else if(aver == 1) { 
+      return <span>{starTile}</span>
+    } else {
+      return <span id='star'>{noReviews}</span>
+    }
   }
   
   let starCount = averageRating(average)
@@ -165,7 +171,7 @@ const RecipeShow = (props) => {
           {newReviewForm()}
         </div>
         <div>
-          {reviewTiles}
+          {reviewTiles.reverse()}
         </div>
       </div>
     </div>
