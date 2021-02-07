@@ -12,6 +12,9 @@ usersRouter.post("/", async (req, res) => {
   const { firstName, email, password, passwordConfirmation } = formInput;
 
   try {
+    if (password !== passwordConfirmation) {
+      throw(error)
+    }
     const persistedUser = await User.query().insertAndFetch({ email, password, firstName });
     return req.login(persistedUser, () => {
       return res.status(201).json({ user: persistedUser });

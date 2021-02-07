@@ -58,7 +58,7 @@ const NewReviewForm = ({ postReview }) => {
 
         <div>
           <input 
-            className='btn btn-primary rev-form' 
+            className='btn btn-primary' 
             type='submit' 
             value='Submit' 
           />

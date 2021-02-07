@@ -20,10 +20,11 @@ const RecipeIndex = props => {
   }
   
   useEffect(() => {
+    window.scrollTo(0, 0)
     getRecipes()
   }, [])
 
-  const recipeTiles = recipes.reverse().map(recipe => {
+  const recipeTiles = recipes.map(recipe => {
     return (
       <RecipeTile
         key={recipe.id}
@@ -37,8 +38,8 @@ const RecipeIndex = props => {
   return (
     <div className="row background-runner">
       <div className="small-8 small-centered columns main-container">
-        <h1 className="text-center">Top Recipes
-          <img src={img} className='crazyImg'/>
+        <h1 className="text-center">New Recipes
+          <img src={img} className='chef-hat'/>
         </h1>
         <div>
           {recipeTiles}
