@@ -33,6 +33,13 @@ const RegistrationForm = () => {
         email: 'is invalid',
       }
     }
+    
+    if (password !== passwordConfirmation) {
+      newErrors = {
+        ...newErrors,
+        passwordConfirmation: 'does not match password',
+      }
+    }
 
     if (password.trim() == '') {
       newErrors = {
@@ -40,20 +47,13 @@ const RegistrationForm = () => {
         password: 'is required',
       }
     }
-
+    
     if (passwordConfirmation.trim() === '') {
       newErrors = {
         ...newErrors,
         passwordConfirmation: 'is required',
       }
-    } else {
-      if (passwordConfirmation !== password) {
-        newErrors = {
-          ...newErrors,
-          passwordConfirmation: 'does not match password',
-        }
-      }
-    }
+    } 
 
     setErrors(newErrors)
   }

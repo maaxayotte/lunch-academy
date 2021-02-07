@@ -1,6 +1,6 @@
 import React from 'react'
 
-const img = 'https://www.pngitem.com/pimgs/m/176-1768824_information-feedback-exchange-of-ideas-interview-feedback-clipart.png'
+let img = 'https://www.pngitem.com/pimgs/m/176-1768824_information-feedback-exchange-of-ideas-interview-feedback-clipart.png'
 
 const ReviewTile = (props) => {
   
@@ -15,7 +15,7 @@ const ReviewTile = (props) => {
             <h2 className="rec-title">
               {props.review.user.firstName} says...
             </h2>
-            <p className="rec-text">{props.review.description}</p>
+            <p className="rev-text">{props.review.description}</p>
             <ul className="rec-info">
               <li>
                 Rating:

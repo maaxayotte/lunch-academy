@@ -33,6 +33,7 @@ const RecipeShow = (props) => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getRecipe()
   }, [])
 
@@ -89,7 +90,7 @@ const RecipeShow = (props) => {
 
   let leaveReview = 'Sign in to Leave a Review!'
   if (props.user !== null) {
-    leaveReview = 'Leave a Review'
+    leaveReview = 'Leave a Review:'
   }
   
   const averageRating =(arr) => {
@@ -144,7 +145,7 @@ const RecipeShow = (props) => {
             {recipe.difficulty}
           </div>
         </div>
-
+        <img className='rec-img-large' src={recipe.url} />
         <div className="ingredient-instructions">
           <div>
             <div className="recipe-column-names ingrdt-instrcs-title">
@@ -164,7 +165,7 @@ const RecipeShow = (props) => {
           <div className='review-title-container'>
             <h2 className="rec-title review-title">{leaveReview}
             </h2>
-            <h2 className="rec-title review-title">Avg Rating: {stars(starCount)}
+            <h2 className="rec-title review-title">Average Rating: {stars(starCount)}
             </h2>
           </div>
           <ErrorList errors={errors} />

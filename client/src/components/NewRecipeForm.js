@@ -171,7 +171,7 @@ return(
         </label>
 
         <label>
-          URL:
+          Image URL (optional):
           <input
             className='input' 
             type='text'

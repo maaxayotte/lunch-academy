@@ -18,30 +18,52 @@ body {
   background-size: cover; 
   background-repeat: no-repeat;
   background-attachment: fixed;
-  margin: 0;
+  margin: 50px 0 0 0;
   padding: 0;
+}
+
+hr {
+  border-top: 1px solid #555;
+  margin: 4rem auto 0 auto;
+  width: 85%;
 }
 
 .background-runner {
   position: relative;
-  background-image: none;
   max-width: 850px;
   margin: 0 auto;
   min-height: 100vh;
   background-color: rgba(248, 241, 241, .8);
 }
 
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #555;
-  margin: 4rem auto 0 auto;
-  padding: 0;
-  width: 85%;
+
+.top-bar {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  float: left;
 }
 
-a {
+.top-bar .top-bar-left, .top-bar .top-bar-right {
+  max-width: fit-content;
+  font-family: 'Poppins', sans-serif; 
+}
+
+#top-bar-color {
+  background-color: #F8F1F1;
+  z-index: 99999;
+}
+
+#top-bar-colors {
+  background-color: #F8F1F1;
+}
+
+#hideToggle {
+  display: none;
+  color: #5EAAA8;
+}
+
+.icon {
   color: #5EAAA8;
 }
 
@@ -55,32 +77,6 @@ a:hover {
   color: #A3D2CA;
 }
 
-.top-bar {
-  position: relative; 
-}
- 
-#top-bar-color {
-  background-color: #F8F1F1;
-}
-
-#top-bar-colors {
-  background-color: #F8F1F1;
-}
-
-#hideToggle {
-  display: none;
-  color: #5EAAA8;
-}
-
-.lunch-nav {
-  color: #5EAAA8;
-  font-family: 'Poppins', sans-serif; 
-}
-
-.icon {
-  color: #5EAAA8;
-}
-
 .main-container {
   color: #333;
   padding: 30px 50px;
@@ -88,27 +84,28 @@ a:hover {
 
 .recipe-form {
    width: 75%;
-   margin-left: auto;
-   margin-right: auto;
+   margin: 0 auto;
 }
 
 .form-container {
   min-width: 270px;
   width: 30vw;
   max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .input {
   border-radius: 8px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }
 
 .recipe-name, .review-name, h1 {
   font-family: 'Poppins', sans-serif;
   padding: 0px;
   color: #eb5e0b;
-  font-size: 3.5em;
+  font-size: 3.5rem;
+  text-shadow: 0 2px 10px rgb(255, 255, 255);
+  margin-top: 5px;
 }
 
 .review-name {
@@ -116,7 +113,7 @@ a:hover {
 }
 
 .recipe-top {
-  padding: 30px 30px 50px 30px;
+  padding: 25px 30px 30px 30px;
   font-family: 'Poppins', sans-serif;
   font-size: 1.2em;
 }
@@ -132,29 +129,18 @@ a:hover {
 
 .ingrdt-instrcs-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  text-decoration: underline;
 }
 
 .instructions-div {
   padding-top: 100px;
 }
 
-.review-container {
-  padding: 10px;
-  border: #5eaaa8;
-  border-style: solid;
-  border-width: 2px;
-  margin-bottom: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
-}
-
-.vote-number {
-  color: #5eaaa8;
-  font-size: 20px;
+.rec-img-large {
+  margin: 0 auto 30px auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .btn-div {
@@ -186,6 +172,7 @@ a:hover {
   border-radius: 8px;
   width: 75%;
   max-width: 180px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary, #btn-sign {
@@ -200,13 +187,7 @@ a:hover {
   box-shadow: 0 0 3px 0 hsl(170, 20%, 30%);
 } 
 
-.btn-recipe {
-  margin-top: 25px;
-  font-size: 1.2em;
-  width: 250px;
-}
-
-.rec-tile-container {
+.rec-tile-container, .rev-tile-container {
   padding: 20px;
   margin: 30px auto 60px auto;
   max-width: 100%;
@@ -215,11 +196,8 @@ a:hover {
 }
 
 .rev-tile-container {
-  padding: 20px;
   margin: 0px auto 0px auto;
-  max-width: 100%;
   width: 700px;
-  font-family: 'Poppins', sans-serif;
 }
 
 .recipe {
@@ -249,14 +227,13 @@ a:hover {
 }
 
 .rec-title {
-  display: inline-block;
   font-size: 2rem;
   margin: 0 0  20px;
   color:#5EAAA8;
+  text-shadow: 0 1px 10px #ffefef;
 }
 
 .rec-text {
-  font-size: 1em;
   margin-bottom: 5px;
 }
 
@@ -279,7 +256,7 @@ a:hover {
   font-size: 1.1em;
 }
 
-.rec-details .rec-btn {
+ .rec-btn {
   position: absolute;
   bottom: -10px;
   right: -10px;
@@ -290,23 +267,19 @@ a:hover {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
 }
 
-#btn-sign, #sign-in-menu {
+#btn-sign, #sign-in-menu, .sign-out-btn {
   padding: 10px 20px;
   font-size: 1rem;
-  // text-transform: uppercase;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
   background-color: #eb5e0b;
   border-radius: 8px;
   margin: 0 5px 0 0; 
+  outline: none;
 }
 
 .sign-out-btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: hsl(22, 91%, 48%);
   border-radius: 8px;
   color:#e6e6e6;
-  outline: none;
 }
 
 .sign-out-btn:hover, #btn-sign:hover {
@@ -318,6 +291,7 @@ a:hover {
   background-color: #e6e6e6;
   color: #eb5e0b;
   padding: 0;
+  max-width: 200px;
 }
 
 #sign-in-button {
@@ -339,24 +313,29 @@ a:hover {
   background-color: #d7d6d6;
 }
 
-.crazyImg {
+.chef-hat {
   height: 50px;
-}
-
-.rev-form {
-  margin: 0 auto;
 }
 
 .review-title-container {
   display: flex;
-  justify-content:space-evenly;
+  justify-content:space-around;
+  max-width: 650px;
+  margin: 40px auto 0 auto;
 }
 
-.rec-title.review-title {
-  margin: 40px 0 0 0;
-  font-size: 1.5rem;
-  padding-right: 15px;
-  color: #555;
+.review-title {
+  margin: 0;
+  font-size: 1.25rem;
+  padding: 5px 15px 5px 0;
+  color:  #5EAAA8;
+  text-shadow: 0 1px 10px #ffefef;
+  font-family: 'Poppins', sans-serif;
+}
+
+.rev-text {
+  font-size: .85rem;
+  font-family: Arial, Helvetica, sans-serif
 }
 
 #star {
