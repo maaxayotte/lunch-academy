@@ -88,7 +88,7 @@ return(
     <div className='form background-runner'>
       <ErrorList errors={errors} />
       <form className='main-container recipe-form' onSubmit={handleSubmit}>
-        <h1 className= 'text-center formTitle'>Add a new recipe!</h1>
+        <h1 className= 'text-center formTitle'>Add a New Recipe!</h1>
         <label>
           Title:
           <input
