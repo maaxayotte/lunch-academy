@@ -1,4 +1,4 @@
-# lunch academy #
+# Lunch Academy #
 
 **Authors:** Will Howell, Josh Butts, Dru Daniels, Maxwell Ayotte
 
